@@ -76,8 +76,18 @@
   </main>
 
   <script>
-    // set year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  // set year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // highlight current nav link
+  const path = location.pathname.replace(/\/+$/, "");
+  document.querySelectorAll("nav a").forEach(a => {
+    const href = a.getAttribute("href").replace(/\/+$/, "");
+    if ((path === "" && href === "/") || (href && path.endsWith(href))) {
+      a.classList.add("active");
+    }
+  });
+</script>
+
 </body>
 </html>
