@@ -29,6 +29,11 @@
     <!-- Posts container -->
     <section id="posts" style="margin-top:24px; display:grid; gap:16px;"></section>
 
+    <!-- Footer -->
+    <footer style="text-align:center; color:var(--muted); font-size:14px; margin:36px 0 12px;">
+      © <span id="year"></span> Ari Benenson. All rights reserved.
+    </footer>
+  </main>
 
   <script>
     // footer year
@@ -52,7 +57,6 @@
         </div>`;
 
       try {
-        // cache-bust to avoid old CDN copies
         const res = await fetch('posts.json?v=' + Date.now());
         if (!res.ok) throw new Error('Failed to fetch posts.json');
         const data = await res.json();
@@ -65,10 +69,9 @@
           return;
         }
 
-        // sort newest first by date (YYYY-MM-DD)
+        // newest first
         data.sort((a,b) => (b.date || '').localeCompare(a.date || ''));
 
-        // build HTML safely (textContent, not innerHTML)
         container.innerHTML = '';
         for (const post of data) {
           const art = document.createElement('article');
