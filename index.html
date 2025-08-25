@@ -1,11 +1,83 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>PEA Commons</title>
-  </head>
-  <body>
-    <h1>Welcome to PEA Commons!</h1>
-    <p>If you see this page, GitHub Pages is working 🚀</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PEA Commons</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="PEA Commons — the student-built app for schedules, dining menus, building hours, and quick campus tools." />
+</head>
+<body>
+  <!-- NAV -->
+  <nav>
+    <div style="font-weight:700; letter-spacing:.2px;">PEA Commons</div>
+    <div>
+      <a href="/">Home</a>
+      <a href="/bulletin.html">Bulletin</a>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="container">
+    <!-- Hero Card -->
+    <section style="background:var(--card); border-radius:16px; padding:24px; box-shadow:0 6px 18px rgba(0,0,0,.06); border:1px solid rgba(0,0,0,.06);">
+      <h1 style="margin:0 0 8px 0; font-size:34px;">Welcome to PEA Commons</h1>
+      <p style="margin:0; color:var(--muted); font-size:18px;">
+        Your all-in-one hub for <strong>schedules</strong>, <strong>dining menus</strong>, <strong>building hours</strong>, and quick campus tools — built for Exeter students.
+      </p>
+
+      <!-- App Store button (replace href later with your real link) -->
+      <div style="margin-top:20px;">
+        <a class="button"
+   href="https://apps.apple.com/us/app/pea-commons-dc101f/id6751022904"
+   target="_blank" rel="noopener"
+   aria-label="Download on the App Store">
+  ⬇️ Download on the App&nbsp;Store
+</a>
+
+        <div style="color:var(--muted); font-size:13px; margin-top:6px;">
+          (We’ll swap in your real App Store link as soon as you give it to me.)
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature Grid -->
+    <section style="margin-top:28px; display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(230px,1fr));">
+      <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
+        <h3 style="margin:0 0 6px 0;">Dining Hall Menus</h3>
+        <p style="margin:0; color:var(--muted);">See today’s offerings at Elm and New Dining Hall.</p>
+      </div>
+      <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
+        <h3 style="margin:0 0 6px 0;">Live Building Status</h3>
+        <p style="margin:0; color:var(--muted);">Check what’s open right now across campus.</p>
+      </div>
+      <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
+        <h3 style="margin:0 0 6px 0;">Schedules</h3>
+        <p style="margin:0; color:var(--muted);">Personal class schedule and preseason/arrival schedules.</p>
+      </div>
+      <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
+        <h3 style="margin:0 0 6px 0;">Quick Links & Safety</h3>
+        <p style="margin:0; color:var(--muted);">Useful phone numbers, passes, and campus resources.</p>
+      </div>
+    </section>
+
+    <!-- Callout -->
+    <section style="margin-top:28px; background:var(--card); border-radius:16px; padding:20px; border:1px solid rgba(0,0,0,.06);">
+      <h2 style="margin:0 0 8px 0;">Built by students, for students</h2>
+      <p style="margin:0; color:var(--muted);">
+        Designed to match the clean, soft look of the app — light pink background, rounded cards, and bold red accents.
+      </p>
+    </section>
+
+    <!-- Footer -->
+    <footer style="text-align:center; color:var(--muted); font-size:14px; margin:36px 0 12px;">
+      © <span id="year"></span> Ari Benenson. All rights reserved.
+    </footer>
+  </main>
+
+  <script>
+    // set year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>
