@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8" />     console.error(err);
+        container.innerHTML = `
+          <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06); color:var(--muted);">
+            Couldn’t load posts right now. Try refreshing in a minute.
+          </div>`;
+      }
+    }
+
+    loadPosts();
+  </script>
+</body>
+</html>
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PEA Commons</title>
   <link rel="stylesheet" href="style.css" />
@@ -62,8 +74,6 @@
   </main>
 
   <script>
-    // set year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
 
     // highlight current nav link
     const path = location.pathname.replace(/\/+$/, "");
