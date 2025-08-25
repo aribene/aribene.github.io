@@ -12,9 +12,8 @@
   <nav>
     <div style="font-weight:700; letter-spacing:.2px;">PEA Commons</div>
     <div>
-     <a href="index.html">Home</a>
-<a href="bulletin.html">Bulletin</a>
-
+      <a href="index.html">Home</a>
+      <a href="bulletin.html">Bulletin</a>
     </div>
   </nav>
 
@@ -27,32 +26,8 @@
       </p>
     </section>
 
-    <!-- Posts -->
-    <section style="margin-top:24px; display:grid; gap:16px;">
-      <!-- 👉 To add a new post: duplicate a whole <article> block below, put newest on top. -->
-
-      <article style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
-        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
-          <h3 style="margin:0; font-size:20px;">Welcome to the PEA Commons bulletin!</h3>
-          <span style="color:var(--muted); font-size:14px;">Aug 25, 2025</span>
-        </div>
-        <p style="margin:10px 0 0 0; color:var(--text);">
-          We’ll post live updates here — things like dining changes, building hour adjustments, and preseason info.
-        </p>
-      </article>
-
-      <!-- Example post (you can delete or edit) -->
-      <article style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
-        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
-          <h3 style="margin:0; font-size:20px;">Dining notes</h3>
-          <span style="color:var(--muted); font-size:14px;">Aug 25, 2025</span>
-        </div>
-        <p style="margin:10px 0 0 0; color:var(--text);">
-          Elm + New Dining Hall are open on regular hours today. Check the app for menus.
-        </p>
-      </article>
-
-    </section>
+    <!-- Posts container -->
+    <section id="posts" style="margin-top:24px; display:grid; gap:16px;"></section>
 
     <!-- Footer -->
     <footer style="text-align:center; color:var(--muted); font-size:14px; margin:36px 0 12px;">
@@ -61,18 +36,81 @@
   </main>
 
   <script>
-  // set year in footer
-  document.getElementById('year').textContent = new Date().getFullYear();
+    // footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-  // highlight current nav link
-  const path = location.pathname.replace(/\/+$/, "");
-  document.querySelectorAll("nav a").forEach(a => {
-    const href = a.getAttribute("href").replace(/\/+$/, "");
-    if ((path === "" && href === "/") || (href && path.endsWith(href))) {
-      a.classList.add("active");
+    // highlight current nav link
+    const path = location.pathname.replace(/\/+$/, "");
+    document.querySelectorAll("nav a").forEach(a => {
+      const href = a.getAttribute("href").replace(/\/+$/, "");
+      if ((path === "" && href === "index.html") || path.endsWith(href)) {
+        a.classList.add("active");
+      }
+    });
+
+    // load posts.json and render
+    async function loadPosts() {
+      const container = document.getElementById('posts');
+      container.innerHTML = `
+        <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06); color:var(--muted);">
+          Loading posts…
+        </div>`;
+
+      try {
+        // cache-bust to avoid old CDN copies
+        const res = await fetch('posts.json?v=' + Date.now());
+        if (!res.ok) throw new Error('Failed to fetch posts.json');
+        const data = await res.json();
+
+        if (!Array.isArray(data) || data.length === 0) {
+          container.innerHTML = `
+            <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06); color:var(--muted);">
+              No posts yet.
+            </div>`;
+          return;
+        }
+
+        // sort newest first by date (YYYY-MM-DD)
+        data.sort((a,b) => (b.date || '').localeCompare(a.date || ''));
+
+        // build HTML safely (textContent, not innerHTML)
+        container.innerHTML = '';
+        for (const post of data) {
+          const art = document.createElement('article');
+          art.style.cssText = "background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);";
+
+          const header = document.createElement('div');
+          header.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:12px;";
+
+          const h3 = document.createElement('h3');
+          h3.style.cssText = "margin:0; font-size:20px;";
+          h3.textContent = post.title || 'Untitled';
+
+          const date = document.createElement('span');
+          date.style.cssText = "color:var(--muted); font-size:14px;";
+          date.textContent = post.date || '';
+
+          header.appendChild(h3);
+          header.appendChild(date);
+
+          const p = document.createElement('p');
+          p.style.cssText = "margin:10px 0 0 0; color:var(--text); white-space:pre-wrap;";
+          p.textContent = post.body || '';
+
+          art.appendChild(header);
+          art.appendChild(p);
+          container.appendChild(art);
+        }
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = `
+          <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06); color:var(--muted);">
+            Couldn’t load posts right now. Try refreshing in a minute.
+          </div>`;
+      }
     }
-  });
-</script>
 
+    loadPosts();
+  </script>
 </body>
 </html>
