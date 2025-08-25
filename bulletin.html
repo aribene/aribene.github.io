@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bulletin • PEA Commons</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="PEA Commons Bulletin — quick updates for Exeter students." />
+</head>
+<body>
+  <!-- NAV -->
+  <nav>
+    <div style="font-weight:700; letter-spacing:.2px;">PEA Commons</div>
+    <div>
+      <a href="/">Home</a>
+      <a href="/bulletin.html">Bulletin</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Header -->
+    <section style="background:var(--card); border-radius:16px; padding:22px; box-shadow:0 6px 18px rgba(0,0,0,.06); border:1px solid rgba(0,0,0,.06);">
+      <h1 style="margin:0 0 6px 0; font-size:30px;">Bulletin</h1>
+      <p style="margin:0; color:var(--muted);">
+        Quick announcements, schedule notes, and dining/building updates.
+      </p>
+    </section>
+
+    <!-- Posts -->
+    <section style="margin-top:24px; display:grid; gap:16px;">
+      <!-- 👉 To add a new post: duplicate a whole <article> block below, put newest on top. -->
+
+      <article style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+          <h3 style="margin:0; font-size:20px;">Welcome to the PEA Commons bulletin!</h3>
+          <span style="color:var(--muted); font-size:14px;">Aug 25, 2025</span>
+        </div>
+        <p style="margin:10px 0 0 0; color:var(--text);">
+          We’ll post live updates here — things like dining changes, building hour adjustments, and preseason info.
+        </p>
+      </article>
+
+      <!-- Example post (you can delete or edit) -->
+      <article style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+          <h3 style="margin:0; font-size:20px;">Dining notes</h3>
+          <span style="color:var(--muted); font-size:14px;">Aug 25, 2025</span>
+        </div>
+        <p style="margin:10px 0 0 0; color:var(--text);">
+          Elm + New Dining Hall are open on regular hours today. Check the app for menus.
+        </p>
+      </article>
+
+    </section>
+
+    <!-- Footer -->
+    <footer style="text-align:center; color:var(--muted); font-size:14px; margin:36px 0 12px;">
+      © <span id="year"></span> Ari Benenson. All rights reserved.
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
