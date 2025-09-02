@@ -1,123 +1,8 @@
 [
   {
-    "title": "8:30 – 10:00 pm — Dorm Meetings",
-    "date": "Sept 4",
-    "body": "Required for all boarders and day students. Day students depart after."
-  },
-  {
-    "title": "8:30 pm — Check-In for Boarding Students",
-    "date": "Sept 4",
-    "body": "Required check-in for all boarding students."
-  },
-  {
-    "title": "8:00 – 8:30 pm — Fac/Proc Meetings",
-    "date": "Sept 4",
-    "body": "Meetings as needed."
-  },
-  {
-    "title": "6:45 – 8:00 pm — Prep Ice Cream Social",
-    "date": "Sept 4",
-    "body": "Preps gather at Football Stadium for Memories Ice Cream with classmates."
-  },
-  {
-    "title": "6:30 – 8:00 pm — Senior Class Dinner",
-    "date": "Sept 4",
-    "body": "Required dinner for all seniors and PGs. Location: Hahn Room."
-  },
-  {
-    "title": "5:00 – 7:00 pm — Dinner",
-    "date": "Sept 4",
-    "body": "Dining Halls open for dinner."
-  },
-  {
-    "title": "4:00 – 6:00 pm — Fall Varsity/JV Athletics Meeting",
-    "date": "Sept 4",
-    "body": "Required for students trying out for fall sports; followed by tryouts. Location: Love Gym."
-  },
-  {
-    "title": "4:00 – 6:00 pm — Music Auditions",
-    "date": "Sept 4",
-    "body": "Jazz Ensemble & Small Jazz Combo (Landers Hall); Choir (Powell Hall); Orchestra (Bowld)."
-  },
-  {
-    "title": "4:00 – 6:00 pm — Group Theater Auditions",
-    "date": "Sept 4",
-    "body": "Open to all, no experience required. Location: Goel Center."
-  },
-  {
-    "title": "4:00 – 6:00 pm — Dance Placement (New Students)",
-    "date": "Sept 4",
-    "body": "Placement for students new to the dance program. Location: Goel Center."
-  },
-  {
-    "title": "8:00 am – 4:00 pm — Class Programs",
-    "date": "Sept 4",
-    "body": "Students gather by class for special orientation programs."
-  },
-  {
-    "title": "8:30 am – 5:00 pm — Bookstore Open",
-    "date": "Sept 4",
-    "body": "Exeter Bookstore open."
-  },
-  {
-    "title": "7:30 am – 8:00 pm — Grill Open",
-    "date": "Sept 4",
-    "body": "Elizabeth Phillips Academy Center Grill open."
-  },
-  {
-    "title": "7:00 – 9:00 am — Breakfast",
-    "date": "Sept 4",
-    "body": "Dining Halls open for breakfast."
-  },
-  {
-    "title": "9:15 – 10:00 pm — Required Dorm Meetings",
+    "title": "8:00 am – 5:00 pm — Registration & Move In (New & Returning Students)",
     "date": "Sept 3",
-    "body": "All boarders and dorm affiliates; optional for day student affiliates."
-  },
-  {
-    "title": "8:00 – 8:45 pm — Academy Basics (Uppers @ Grainger, Seniors @ Love Gym) — REQUIRED",
-    "date": "Sept 3",
-    "body": "Session with the Dean of Students Office."
-  },
-  {
-    "title": "7:00 – 7:45 pm — Academy Basics (Preps @ Grainger, Lowers @ Love Gym) — REQUIRED",
-    "date": "Sept 3",
-    "body": "Session with the Dean of Students Office."
-  },
-  {
-    "title": "5:00 – 7:00 pm — Student/Advisory BBQ & Back-to-School Party",
-    "date": "Sept 3",
-    "body": "On McConnell Lawn; adviser will share meet-up details."
-  },
-  {
-    "title": "4:00 – 5:30 pm — Parent/Guardian Welcome Reception",
-    "date": "Sept 3",
-    "body": "Light refreshments and fellowship; visiting siblings welcome. Location: Thompson Field House, Wrestling Room, 2nd floor."
-  },
-  {
-    "title": "3:15 – 3:45 pm — Principal’s Welcome for New Parents",
-    "date": "Sept 3",
-    "body": "Remarks from Principal Rawson and Academy leaders. Location: Goel Center, Mainstage."
-  },
-  {
-    "title": "3:15 – 3:45 pm — New Students Meet Proctors",
-    "date": "Sept 3",
-    "body": "Introductions and dorm tour in dorm common rooms."
-  },
-  {
-    "title": "2:30 – 3:00 pm — Dorm Meet & Greet for Families",
-    "date": "Sept 3",
-    "body": "Meet your dorm team in the dorm’s common room."
-  },
-  {
-    "title": "1:45 – 2:15 pm — Adviser Meetings",
-    "date": "Sept 3",
-    "body": "New boarders/day students meet advisers; locations sent by email."
-  },
-  {
-    "title": "1:15 – 1:35 pm — New Day Students & Families Meet",
-    "date": "Sept 3",
-    "body": "Meet Day Student Coordinator Jennifer Manx Asch. Location: EPAC, Day Student Lounge, 2nd floor."
+    "body": "Register and move in; new day students recommended after 11:00 am. Parents: coffee/chat in Wrestling Room (by Hahn). Location: William Boyce Thompson Field House, Chadwick Lane."
   },
   {
     "title": "11:30 am – 1:30 pm — Lunch with Families & Lion Mascot",
@@ -125,8 +10,123 @@
     "body": "Enjoy lunch and a DJ. Locations: Elm Street and New Dining Halls."
   },
   {
-    "title": "8:00 am – 5:00 pm — Registration & Move In (New & Returning Students)",
+    "title": "1:15 – 1:35 pm — New Day Students & Families Meet",
     "date": "Sept 3",
-    "body": "Register and move in; new day students recommended after 11:00 am. Parents: coffee/chat in Wrestling Room (by Hahn). Location: William Boyce Thompson Field House, Chadwick Lane."
+    "body": "Meet Day Student Coordinator Jennifer Manx Asch. Location: EPAC, Day Student Lounge, 2nd floor."
+  },
+  {
+    "title": "1:45 – 2:15 pm — Adviser Meetings",
+    "date": "Sept 3",
+    "body": "New boarders/day students meet advisers; locations sent by email."
+  },
+  {
+    "title": "2:30 – 3:00 pm — Dorm Meet & Greet for Families",
+    "date": "Sept 3",
+    "body": "Meet your dorm team in the dorm’s common room."
+  },
+  {
+    "title": "3:15 – 3:45 pm — New Students Meet Proctors",
+    "date": "Sept 3",
+    "body": "Introductions and dorm tour in dorm common rooms."
+  },
+  {
+    "title": "3:15 – 3:45 pm — Principal’s Welcome for New Parents",
+    "date": "Sept 3",
+    "body": "Remarks from Principal Rawson and Academy leaders. Location: Goel Center, Mainstage."
+  },
+  {
+    "title": "4:00 – 5:30 pm — Parent/Guardian Welcome Reception",
+    "date": "Sept 3",
+    "body": "Light refreshments and fellowship; visiting siblings welcome. Location: Thompson Field House, Wrestling Room, 2nd floor."
+  },
+  {
+    "title": "5:00 – 7:00 pm — Student/Advisory BBQ & Back-to-School Party",
+    "date": "Sept 3",
+    "body": "On McConnell Lawn; adviser will share meet-up details."
+  },
+  {
+    "title": "7:00 – 7:45 pm — Academy Basics (Preps @ Grainger, Lowers @ Love Gym) — REQUIRED",
+    "date": "Sept 3",
+    "body": "Session with the Dean of Students Office."
+  },
+  {
+    "title": "8:00 – 8:45 pm — Academy Basics (Uppers @ Grainger, Seniors @ Love Gym) — REQUIRED",
+    "date": "Sept 3",
+    "body": "Session with the Dean of Students Office."
+  },
+  {
+    "title": "9:15 – 10:00 pm — Required Dorm Meetings",
+    "date": "Sept 3",
+    "body": "All boarders and dorm affiliates; optional for day student affiliates."
+  },
+  {
+    "title": "7:00 – 9:00 am — Breakfast",
+    "date": "Sept 4",
+    "body": "Dining Halls open for breakfast."
+  },
+  {
+    "title": "7:30 am – 8:00 pm — Grill Open",
+    "date": "Sept 4",
+    "body": "Elizabeth Phillips Academy Center Grill open."
+  },
+  {
+    "title": "8:30 am – 5:00 pm — Bookstore Open",
+    "date": "Sept 4",
+    "body": "Exeter Bookstore open."
+  },
+  {
+    "title": "8:00 am – 4:00 pm — Class Programs",
+    "date": "Sept 4",
+    "body": "Students gather by class for special orientation programs."
+  },
+  {
+    "title": "4:00 – 6:00 pm — Dance Placement (New Students)",
+    "date": "Sept 4",
+    "body": "Placement for students new to the dance program. Location: Goel Center."
+  },
+  {
+    "title": "4:00 – 6:00 pm — Group Theater Auditions",
+    "date": "Sept 4",
+    "body": "Open to all, no experience required. Location: Goel Center."
+  },
+  {
+    "title": "4:00 – 6:00 pm — Music Auditions",
+    "date": "Sept 4",
+    "body": "Jazz Ensemble & Small Jazz Combo (Landers Hall); Choir (Powell Hall); Orchestra (Bowld)."
+  },
+  {
+    "title": "4:00 – 6:00 pm — Fall Varsity/JV Athletics Meeting",
+    "date": "Sept 4",
+    "body": "Required for students trying out for fall sports; followed by tryouts. Location: Love Gym."
+  },
+  {
+    "title": "5:00 – 7:00 pm — Dinner",
+    "date": "Sept 4",
+    "body": "Dining Halls open for dinner."
+  },
+  {
+    "title": "6:30 – 8:00 pm — Senior Class Dinner",
+    "date": "Sept 4",
+    "body": "Required dinner for all seniors and PGs. Location: Hahn Room."
+  },
+  {
+    "title": "6:45 – 8:00 pm — Prep Ice Cream Social",
+    "date": "Sept 4",
+    "body": "Preps gather at Football Stadium for Memories Ice Cream with classmates."
+  },
+  {
+    "title": "8:00 – 8:30 pm — Fac/Proc Meetings",
+    "date": "Sept 4",
+    "body": "Meetings as needed."
+  },
+  {
+    "title": "8:30 pm — Check-In for Boarding Students",
+    "date": "Sept 4",
+    "body": "Required check-in for all boarding students."
+  },
+  {
+    "title": "8:30 – 10:00 pm — Dorm Meetings",
+    "date": "Sept 4",
+    "body": "Required for all boarders and day students. Day students depart after."
   }
 ]
