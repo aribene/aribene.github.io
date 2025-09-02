@@ -59,6 +59,7 @@
     "date": "Sept 3",
     "body": "All boarders and dorm affiliates; optional for day student affiliates."
   },
+
   {
     "title": "7:00 – 9:00 am — Breakfast",
     "date": "Sept 4",
@@ -70,14 +71,14 @@
     "body": "Elizabeth Phillips Academy Center Grill open."
   },
   {
-    "title": "8:30 am – 5:00 pm — Bookstore Open",
-    "date": "Sept 4",
-    "body": "Exeter Bookstore open."
-  },
-  {
     "title": "8:00 am – 4:00 pm — Class Programs",
     "date": "Sept 4",
     "body": "Students gather by class for special orientation programs."
+  },
+  {
+    "title": "8:30 am – 5:00 pm — Bookstore Open",
+    "date": "Sept 4",
+    "body": "Exeter Bookstore open."
   },
   {
     "title": "4:00 – 6:00 pm — Dance Placement (New Students)",
