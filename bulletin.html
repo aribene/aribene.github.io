@@ -45,7 +45,11 @@
     </section>
 
     <!-- Posts container -->
-    <section id="posts" style="margin-top:24px; display:grid; gap:16px;"></section>
+    <section id="posts" style="margin-top:24px; display:grid; gap:16px;">
+      <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06); color:var(--muted);">
+        Select a grade above to view your schedule.
+      </div>
+    </section>
     <!-- Footer -->
    
   <script>
@@ -54,9 +58,10 @@
 
     async function loadSchedules() {
       try {
-        const res = await fetch('schedules.json?v=' + Date.now());
-        if (!res.ok) throw new Error('Failed to fetch schedules.json');
+        const res = await fetch('posts.json?v=' + Date.now());
+        if (!res.ok) throw new Error('Failed to fetch posts.json');
         scheduleData = await res.json();
+        console.log('Loaded schedule data:', scheduleData); // Debug log
       } catch (err) {
         console.error('Error loading schedules:', err);
       }
@@ -66,6 +71,9 @@
       const container = document.getElementById('scheduleContainer');
       const title = document.getElementById('scheduleTitle');
       const itemsContainer = document.getElementById('scheduleItems');
+      
+      console.log('Displaying schedule for grade:', grade); // Debug log
+      console.log('Available grades:', Object.keys(scheduleData)); // Debug log
       
       if (!grade || !scheduleData[grade]) {
         container.style.display = 'none';
@@ -122,67 +130,6 @@
         a.classList.add("active");
       }
     });
-    // load posts.json and render (but skip if it contains schedule data)
-    async function loadPosts() {
-      const container = document.getElementById('posts');
-      container.innerHTML = `
-        <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06); color:var(--muted);">
-          Loading posts…
-        </div>`;
-      try {
-        const res = await fetch('posts.json?v=' + Date.now());
-        if (!res.ok) throw new Error('Failed to fetch posts.json');
-        const data = await res.json();
-        
-        // Check if this is schedule data or bulletin posts
-        if (!Array.isArray(data)) {
-          // This is schedule data, not bulletin posts
-          container.innerHTML = `
-            <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06); color:var(--muted);">
-              Select a grade above to view your schedule.
-            </div>`;
-          return;
-        }
-        
-        if (data.length === 0) {
-          container.innerHTML = `
-            <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06); color:var(--muted);">
-              No posts yet.
-            </div>`;
-          return;
-        }
-        // newest first
-        data.sort((a,b) => (b.date || '').localeCompare(a.date || ''));
-        container.innerHTML = '';
-        for (const post of data) {
-          const art = document.createElement('article');
-          art.style.cssText = "background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);";
-          const header = document.createElement('div');
-          header.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:12px;";
-          const h3 = document.createElement('h3');
-          h3.style.cssText = "margin:0; font-size:20px;";
-          h3.textContent = post.title || 'Untitled';
-          const date = document.createElement('span');
-          date.style.cssText = "color:var(--muted); font-size:14px;";
-          date.textContent = post.date || '';
-          header.appendChild(h3);
-          header.appendChild(date);
-          const p = document.createElement('p');
-          p.style.cssText = "margin:10px 0 0 0; color:var(--text); white-space:pre-wrap;";
-          p.textContent = post.body || '';
-          art.appendChild(header);
-          art.appendChild(p);
-          container.appendChild(art);
-        }
-      } catch (err) {
-        console.error(err);
-        container.innerHTML = `
-          <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06); color:var(--muted);">
-            Couldn't load posts right now. Try refreshing in a minute.
-          </div>`;
-      }
-    }
-    loadPosts();
   </script>
 </body>
 </html>
