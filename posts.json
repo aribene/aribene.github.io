@@ -1,62 +1,125 @@
-[
-  {
-    "title": "8:00 am – 5:00 pm — Registration & Move In (New & Returning Students)",
-    "date": "Sept 3",
-    "body": "Register and move in; new day students recommended after 11:00 am. Parents: coffee/chat in Wrestling Room (by Hahn). Location: William Boyce Thompson Field House, Chadwick Lane."
-  },
-  {
-    "title": "11:30 am – 1:30 pm — Lunch with Families & Lion Mascot",
-    "date": "Sept 3",
-    "body": "Enjoy lunch and a DJ. Locations: Elm Street and New Dining Halls."
-  },
-  {
-    "title": "1:15 – 1:35 pm — New Day Students & Families Meet",
-    "date": "Sept 3",
-    "body": "Meet Day Student Coordinator Jennifer Manx Asch. Location: EPAC, Day Student Lounge, 2nd floor."
-  },
-  {
-    "title": "1:45 – 2:15 pm — Adviser Meetings",
-    "date": "Sept 3",
-    "body": "New boarders/day students meet advisers; locations sent by email."
-  },
-  {
-    "title": "2:30 – 3:00 pm — Dorm Meet & Greet for Families",
-    "date": "Sept 3",
-    "body": "Meet your dorm team in the dorm’s common room."
-  },
-  {
-    "title": "3:15 – 3:45 pm — New Students Meet Proctors",
-    "date": "Sept 3",
-    "body": "Introductions and dorm tour in dorm common rooms."
-  },
-  {
-    "title": "3:15 – 3:45 pm — Principal’s Welcome for New Parents",
-    "date": "Sept 3",
-    "body": "Remarks from Principal Rawson and Academy leaders. Location: Goel Center, Mainstage."
-  },
-  {
-    "title": "4:00 – 5:30 pm — Parent/Guardian Welcome Reception",
-    "date": "Sept 3",
-    "body": "Light refreshments and fellowship; visiting siblings welcome. Location: Thompson Field House, Wrestling Room, 2nd floor."
-  },
-  {
-    "title": "5:00 – 7:00 pm — Student/Advisory BBQ & Back-to-School Party",
-    "date": "Sept 3",
-    "body": "On McConnell Lawn; adviser will share meet-up details."
-  },
-  {
-    "title": "7:00 – 7:45 pm — Academy Basics (Preps @ Grainger, Lowers @ Love Gym) — REQUIRED",
-    "date": "Sept 3",
-    "body": "Session with the Dean of Students Office."
-  },
-  {
-    "title": "8:00 – 8:45 pm — Academy Basics (Uppers @ Grainger, Seniors @ Love Gym) — REQUIRED",
-    "date": "Sept 3",
-    "body": "Session with the Dean of Students Office."
-  },
-  {
-    "title": "9:15 – 10:00 pm — Required Dorm Meetings",
-    "date": "Sept 3",
-    "body": "All boarders and dorm affiliates; optional for day student affiliates."
-  }
-]
+{
+  "prep": [
+    {
+      "title": "Eat Breakfast",
+      "time": "7:00–8:00 AM",
+      "body": "Don't skip it! Grab any meds from the Health Center before you leave. Bring your inhaler/epi-pen if you need one."
+    },
+    {
+      "title": "Meet in Thomson Gym",
+      "time": "8:00 AM",
+      "body": "Don't be late—we roll out together."
+    },
+    {
+      "title": "Browne Center Activities",
+      "time": "9:30 AM–3:00 PM",
+      "body": "Outdoor team games, problem-solving, and adventure challenges (some on the ground, some climbing!). All \"challenge by choice,\" so you set your level. Dress for the weather + check the attached \"What to Wear\" list."
+    },
+    {
+      "title": "Back on Campus",
+      "time": "After 3:00 PM",
+      "body": "Your activities (dance, music, athletics) + dinner on your own."
+    },
+    {
+      "title": "Ice Cream Social @ Phelps Stadium 🍦",
+      "time": "6:45–7:45 PM",
+      "body": "Chill, hang out, celebrate the day."
+    }
+  ],
+  "lower": [
+    {
+      "title": "Orientation Day",
+      "time": "Thursday, September 4",
+      "body": "Start Time: 8:15 AM. Meeting Location: The library lawn, specifically near the memorial."
+    },
+    {
+      "title": "Team-building Workshops",
+      "time": "Throughout the Day",
+      "body": "Led by the dynamic team from Thrive."
+    },
+    {
+      "title": "Downtown Exeter Scavenger Hunt",
+      "time": "Throughout the Day",
+      "body": "Using the Goosechase app (one group member will need to download the app), where you'll explore local shops and sample various food items."
+    }
+  ],
+  "upper": [
+    {
+      "title": "Breakfast",
+      "time": "7:00–8:25 AM",
+      "body": "Breakfast will be open in either New Dining Hall and Elm Street. Grab something before heading over to Goel."
+    },
+    {
+      "title": "Meet at Goel",
+      "time": "8:25–9:00 AM",
+      "body": "Get briefed on the day and receive supplies and info."
+    },
+    {
+      "title": "Load Buses & Collect Phones",
+      "time": "9:00–9:15 AM",
+      "body": "Preparation for Portsmouth trip."
+    },
+    {
+      "title": "Head to Portsmouth",
+      "time": "9:15–9:45 AM",
+      "body": "Drop off at Prescott Park."
+    },
+    {
+      "title": "Explore Portsmouth",
+      "time": "9:45–11:30 AM",
+      "body": "Explore Portsmouth for 1.5-2 hours (we will provide a map). Grab yourself a snack or a drink, spend time with people in a new place and have some fun."
+    },
+    {
+      "title": "Walk to Lunch",
+      "time": "11:30–11:45 AM",
+      "body": "Walk over to Lunch at Four Tree Island."
+    },
+    {
+      "title": "Lunch",
+      "time": "11:45 AM–12:45 PM",
+      "body": "Lunch from Bennett's Sandwich Shop. We will have this hour to eat, unwind, play games, etc."
+    },
+    {
+      "title": "Load Buses & Head Back",
+      "time": "12:45–1:15 PM",
+      "body": "Load buses at Prescott Park and head back to PEA."
+    },
+    {
+      "title": "Reflection and Debrief",
+      "time": "1:15–1:45 PM",
+      "body": "Reflection and debrief at Goel to end the day!"
+    }
+  ],
+  "senior": [
+    {
+      "title": "Breakfast",
+      "time": "7:00–9:00 AM",
+      "body": "Both dining halls are open for breakfast."
+    },
+    {
+      "title": "Arrive to the Field House",
+      "time": "9:15 AM",
+      "body": "Meeting location for the day's activities."
+    },
+    {
+      "title": "Group Activities with Bald Mountain Meadow",
+      "time": "9:30 AM–Noon",
+      "body": "We will share group assignments on Wednesday."
+    },
+    {
+      "title": "Lunch in the Wrestling Room",
+      "time": "Noon–1:00 PM",
+      "body": "Lunch in the Wrestling Room of the Field House."
+    },
+    {
+      "title": "Field Day",
+      "time": "1:15–2:30 PM",
+      "body": "We will share team assignments on Wednesday."
+    },
+    {
+      "title": "Inaugural Senior Class Dinner",
+      "time": "6:30–8:00 PM",
+      "body": "Inaugural Senior Class Dinner in the Wrestling Room of the Field House."
+    }
+  ]
+}
