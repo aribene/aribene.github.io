@@ -16,25 +16,103 @@
       <a href="bulletin.html">Bulletin</a>
     </div>
   </nav>
-
   <main class="container">
     <!-- Header -->
-    <!-- Header -->
-<section style="background:var(--card); border-radius:16px; padding:22px; box-shadow:0 6px 18px rgba(0,0,0,.06); border:1px solid rgba(0,0,0,.06); margin-top:0px;">
-  <h1 style="margin:0 0 6px 0; font-size:30px;">Welcome to the PEA Commons Bulletin!</h1>
-  <p style="margin:0; color:var(--muted);">
-    Announcements, upcoming events, and more.
-  </p>
-</section>
+    <section style="background:var(--card); border-radius:16px; padding:22px; box-shadow:0 6px 18px rgba(0,0,0,.06); border:1px solid rgba(0,0,0,.06); margin-top:0px;">
+      <h1 style="margin:0 0 6px 0; font-size:30px;">Welcome to the PEA Commons Bulletin!</h1>
+      <p style="margin:0; color:var(--muted);">
+        Announcements, upcoming events, and more.
+      </p>
+    </section>
 
+    <!-- Grade Schedule Section -->
+    <section style="background:var(--card); border-radius:16px; padding:22px; box-shadow:0 6px 18px rgba(0,0,0,.06); border:1px solid rgba(0,0,0,.06); margin-top:24px;">
+      <h2 style="margin:0 0 12px 0; font-size:24px;">Class Schedule</h2>
+      <div style="margin-bottom:20px;">
+        <label for="gradeSelect" style="display:block; margin-bottom:8px; font-weight:500;">Select your grade:</label>
+        <select id="gradeSelect" style="padding:10px 12px; border:1px solid rgba(0,0,0,.2); border-radius:8px; background:white; font-size:16px; width:200px;">
+          <option value="">Choose your grade...</option>
+          <option value="prep">Prep</option>
+          <option value="lower">Lower</option>
+          <option value="upper">Upper</option>
+          <option value="senior">Senior</option>
+        </select>
+      </div>
+      <div id="scheduleContainer" style="display:none;">
+        <h3 id="scheduleTitle" style="margin:0 0 16px 0; font-size:20px; text-transform:capitalize;"></h3>
+        <div id="scheduleItems" style="display:grid; gap:12px;"></div>
+      </div>
+    </section>
 
     <!-- Posts container -->
     <section id="posts" style="margin-top:24px; display:grid; gap:16px;"></section>
-
     <!-- Footer -->
    
-
   <script>
+    // Grade schedule functionality
+    let scheduleData = {};
+
+    async function loadSchedules() {
+      try {
+        const res = await fetch('schedules.json?v=' + Date.now());
+        if (!res.ok) throw new Error('Failed to fetch schedules.json');
+        scheduleData = await res.json();
+      } catch (err) {
+        console.error('Error loading schedules:', err);
+      }
+    }
+
+    function displaySchedule(grade) {
+      const container = document.getElementById('scheduleContainer');
+      const title = document.getElementById('scheduleTitle');
+      const itemsContainer = document.getElementById('scheduleItems');
+      
+      if (!grade || !scheduleData[grade]) {
+        container.style.display = 'none';
+        return;
+      }
+
+      title.textContent = `${grade.charAt(0).toUpperCase() + grade.slice(1)} Class Schedule`;
+      itemsContainer.innerHTML = '';
+      
+      scheduleData[grade].forEach(item => {
+        const scheduleItem = document.createElement('div');
+        scheduleItem.style.cssText = "background:rgba(0,0,0,.02); border-radius:10px; padding:16px; border:1px solid rgba(0,0,0,.08);";
+        
+        const header = document.createElement('div');
+        header.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:8px;";
+        
+        const itemTitle = document.createElement('h4');
+        itemTitle.style.cssText = "margin:0; font-size:18px; color:var(--text);";
+        itemTitle.textContent = item.title;
+        
+        const time = document.createElement('span');
+        time.style.cssText = "color:var(--muted); font-size:14px; font-weight:500; white-space:nowrap;";
+        time.textContent = item.time;
+        
+        header.appendChild(itemTitle);
+        header.appendChild(time);
+        
+        const body = document.createElement('p');
+        body.style.cssText = "margin:0; color:var(--text); line-height:1.5;";
+        body.textContent = item.body;
+        
+        scheduleItem.appendChild(header);
+        scheduleItem.appendChild(body);
+        itemsContainer.appendChild(scheduleItem);
+      });
+      
+      container.style.display = 'block';
+    }
+
+    // Event listener for grade selection
+    document.getElementById('gradeSelect').addEventListener('change', function(e) {
+      displaySchedule(e.target.value);
+    });
+
+    // Initialize schedules
+    loadSchedules();
+
     // footer year
     // highlight current nav link
     const path = location.pathname.replace(/\/+$/, "");
@@ -44,54 +122,54 @@
         a.classList.add("active");
       }
     });
-
-    // load posts.json and render
+    // load posts.json and render (but skip if it contains schedule data)
     async function loadPosts() {
       const container = document.getElementById('posts');
       container.innerHTML = `
         <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06); color:var(--muted);">
           Loading posts…
         </div>`;
-
       try {
         const res = await fetch('posts.json?v=' + Date.now());
         if (!res.ok) throw new Error('Failed to fetch posts.json');
         const data = await res.json();
-
-        if (!Array.isArray(data) || data.length === 0) {
+        
+        // Check if this is schedule data or bulletin posts
+        if (!Array.isArray(data)) {
+          // This is schedule data, not bulletin posts
+          container.innerHTML = `
+            <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06); color:var(--muted);">
+              Select a grade above to view your schedule.
+            </div>`;
+          return;
+        }
+        
+        if (data.length === 0) {
           container.innerHTML = `
             <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06); color:var(--muted);">
               No posts yet.
             </div>`;
           return;
         }
-
         // newest first
         data.sort((a,b) => (b.date || '').localeCompare(a.date || ''));
-
         container.innerHTML = '';
         for (const post of data) {
           const art = document.createElement('article');
           art.style.cssText = "background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);";
-
           const header = document.createElement('div');
           header.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:12px;";
-
           const h3 = document.createElement('h3');
           h3.style.cssText = "margin:0; font-size:20px;";
           h3.textContent = post.title || 'Untitled';
-
           const date = document.createElement('span');
           date.style.cssText = "color:var(--muted); font-size:14px;";
           date.textContent = post.date || '';
-
           header.appendChild(h3);
           header.appendChild(date);
-
           const p = document.createElement('p');
           p.style.cssText = "margin:10px 0 0 0; color:var(--text); white-space:pre-wrap;";
           p.textContent = post.body || '';
-
           art.appendChild(header);
           art.appendChild(p);
           container.appendChild(art);
@@ -100,11 +178,10 @@
         console.error(err);
         container.innerHTML = `
           <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06); color:var(--muted);">
-            Couldn’t load posts right now. Try refreshing in a minute.
+            Couldn't load posts right now. Try refreshing in a minute.
           </div>`;
       }
     }
-
     loadPosts();
   </script>
 </body>
