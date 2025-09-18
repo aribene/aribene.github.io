@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEA Commons - Schedule Viewer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .input-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .url-input-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .url-input {
+            flex: 1;
+            min-width: 300px;
+            padding: 15px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .url-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .load-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .load-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .load-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .instructions {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .instructions h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .instructions p {
+            color: #5a6c7d;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .week-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 25px;
+            border-radius: 15px;
+            display: none;
+        }
+
+        .week-nav-btn {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .week-nav-btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-1px);
+        }
+
+        .current-week {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .schedule-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 120px repeat(7, 1fr);
+            background: #f8f9fa;
+        }
+
+        .time-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 15px;
+            font-weight: 600;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .day-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 10px;
+            font-weight: 600;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .time-slot {
+            background: #f1f3f4;
+            padding: 15px 10px;
+            text-align: center;
+            font-weight: 500;
+            color: #5f6368;
+            font-size: 12px;
+            border-top: 1px solid #e8eaed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .schedule-cell {
+            background: white;
+            border-top: 1px solid #e8eaed;
+            border-right: 1px solid #e8eaed;
+            min-height: 60px;
+            position: relative;
+        }
+
+        .event {
+            background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+            color: white;
+            margin: 2px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            line-height: 1.3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .event:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .event-title {
+            font-weight: 600;
+            margin-bottom: 2px;
+            font-size: 11px;
+        }
+
+        .event-time {
+            opacity: 0.9;
+            font-size: 10px;
+        }
+
+        .event-location {
+            opacity: 0.8;
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #667eea;
+            display: none;
+        }
+
+        .error {
+            background: #ffeaea;
+            border: 1px solid #ffcdd2;
+            color: #c62828;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .success {
+            background: #e8f5e8;
+            border: 1px solid #c8e6c9;
+            color: #2e7d32;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .schedule-grid {
+                grid-template-columns: 80px repeat(7, 1fr);
+                font-size: 11px;
+            }
+            
+            .url-input-container {
+                flex-direction: column;
+            }
+            
+            .url-input {
+                min-width: 100%;
+            }
+            
+            .event {
+                font-size: 10px;
+                padding: 4px 6px;
+            }
+            
+            .time-slot {
+                font-size: 10px;
+                padding: 10px 5px;
+            }
+            
+            .day-header {
+                padding: 15px 5px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .schedule-grid {
+                grid-template-columns: 60px repeat(5, 1fr);
+            }
+            
+            .day-header:nth-child(7), .day-header:nth-child(8),
+            .schedule-cell:nth-child(7n), .schedule-cell:nth-child(8n) {
+                display: none;
+            }
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📅 PEA Commons</h1>
+            <p>View your schedule from any calendar system</p>
+        </div>
+
+        <div class="input-section">
+            <div class="instructions">
+                <h3>📋 How to use:</h3>
+                <p><strong>1.</strong> Copy your calendar's ICS/iCal URL (from Blackbaud, Google Calendar, Outlook, etc.)</p>
+                <p><strong>2.</strong> Paste the URL below and click "Load Schedule"</p>
+                <p><strong>3.</strong> Your schedule will appear in a clean weekly view</p>
+                <p><strong>Note:</strong> The URL should end with .ics or contain "ical" - it's the link you use to subscribe to your calendar in other apps.</p>
+            </div>
+
+            <div class="url-input-container">
+                <input 
+                    type="url" 
+                    class="url-input" 
+                    id="icsUrl" 
+                    placeholder="Paste your calendar ICS/iCal URL here (e.g., https://example.com/calendar.ics)"
+                >
+                <button class="load-btn" id="loadBtn" onclick="loadSchedule()">
+                    Load Schedule
+                </button>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Loading your schedule...</p>
+            </div>
+
+            <div class="error" id="error"></div>
+            <div class="success" id="success"></div>
+        </div>
+
+        <div class="week-navigation" id="weekNav">
+            <button class="week-nav-btn" onclick="previousWeek()">← Previous Week</button>
+            <div class="current-week" id="currentWeek"></div>
+            <button class="week-nav-btn" onclick="nextWeek()">Next Week →</button>
+        </div>
+
+        <div class="schedule-container" id="scheduleContainer">
+            <div class="schedule-grid" id="scheduleGrid">
+                <!-- Schedule will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentWeekStart = new Date();
+        let calendarEvents = [];
+        
+        // Set current week to start of this week (Monday)
+        const today = new Date();
+        const dayOfWeek = today.getDay();
+        const diff = today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
+        currentWeekStart.setDate(diff);
+        currentWeekStart.setHours(0, 0, 0, 0);
+
+        async function loadSchedule() {
+            const url = document.getElementById('icsUrl').value.trim();
+            const loadBtn = document.getElementById('loadBtn');
+            const loading = document.getElementById('loading');
+            const error = document.getElementById('error');
+            const success = document.getElementById('success');
+            
+            // Hide previous messages
+            error.style.display = 'none';
+            success.style.display = 'none';
+            
+            if (!url) {
+                showError('Please enter a calendar URL');
+                return;
+            }
+            
+            // Show loading state
+            loading.style.display = 'block';
+            loadBtn.disabled = true;
+            loadBtn.textContent = 'Loading...';
+            
+            try {
+                // Use a CORS proxy to fetch the ICS file
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+                const response = await fetch(proxyUrl);
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch calendar: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                const icsData = data.contents;
+                
+                if (!icsData || !icsData.includes('BEGIN:VCALENDAR')) {
+                    throw new Error('Invalid ICS format - make sure you\'re using a calendar subscription URL');
+                }
+                
+                // Parse ICS data
+                calendarEvents = parseICS(icsData);
+                
+                if (calendarEvents.length === 0) {
+                    showError('No events found in the calendar');
+                    return;
+                }
+                
+                // Show success and render schedule
+                success.textContent = `Successfully loaded ${calendarEvents.length} events!`;
+                success.style.display = 'block';
+                
+                renderSchedule();
+                
+                // Show week navigation and schedule
+                document.getElementById('weekNav').style.display = 'flex';
+                document.getElementById('scheduleContainer').style.display = 'block';
+                
+                // Scroll to schedule
+                document.getElementById('scheduleContainer').scrollIntoView({ behavior: 'smooth' });
+                
+            } catch (err) {
+                console.error('Error loading calendar:', err);
+                showError('Failed to load calendar. Please check the URL and try again. Make sure it\'s a public calendar URL.');
+            } finally {
+                loading.style.display = 'none';
+                loadBtn.disabled = false;
+                loadBtn.textContent = 'Load Schedule';
+            }
+        }
+        
+        function showError(message) {
+            const error = document.getElementById('error');
+            error.textContent = message;
+            error.style.display = 'block';
+        }
+        
+        function parseICS(icsData) {
+            const events = [];
+            const lines = icsData.split('\n').map(line => line.trim());
+            let currentEvent = null;
+            
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                
+                if (line === 'BEGIN:VEVENT') {
+                    currentEvent = {};
+                } else if (line === 'END:VEVENT' && currentEvent) {
+                    if (currentEvent.start && currentEvent.summary) {
+                        events.push(currentEvent);
+                    }
+                    currentEvent = null;
+                } else if (currentEvent && line.includes(':')) {
+                    const [key, ...valueParts] = line.split(':');
+                    const value = valueParts.join(':');
+                    
+                    if (key.startsWith('DTSTART')) {
+                        currentEvent.start = parseICSDate(value);
+                    } else if (key.startsWith('DTEND')) {
+                        currentEvent.end = parseICSDate(value);
+                    } else if (key === 'SUMMARY') {
+                        currentEvent.summary = value;
+                    } else if (key === 'LOCATION') {
+                        currentEvent.location = value;
+                    }
+                }
+            }
+            
+            return events.filter(event => event.start && event.end);
+        }
+        
+        function parseICSDate(dateStr) {
+            // Handle both date and datetime formats
+            if (dateStr.length === 8) {
+                // YYYYMMDD format
+                return new Date(
+                    parseInt(dateStr.substr(0, 4)),
+                    parseInt(dateStr.substr(4, 2)) - 1,
+                    parseInt(dateStr.substr(6, 2))
+                );
+            } else if (dateStr.length >= 15) {
+                // YYYYMMDDTHHMMSS format
+                return new Date(
+                    parseInt(dateStr.substr(0, 4)),
+                    parseInt(dateStr.substr(4, 2)) - 1,
+                    parseInt(dateStr.substr(6, 2)),
+                    parseInt(dateStr.substr(9, 2)),
+                    parseInt(dateStr.substr(11, 2)),
+                    parseInt(dateStr.substr(13, 2))
+                );
+            }
+            return new Date();
+        }
+        
+        function renderSchedule() {
+            const grid = document.getElementById('scheduleGrid');
+            const weekDisplay = document.getElementById('currentWeek');
+            
+            // Update week display
+            const endOfWeek = new Date(currentWeekStart);
+            endOfWeek.setDate(endOfWeek.getDate() + 6);
+            weekDisplay.textContent = `${currentWeekStart.toLocaleDateString()} - ${endOfWeek.toLocaleDateString()}`;
+            
+            // Clear existing grid
+            grid.innerHTML = '';
+            
+            // Create headers
+            const timeHeader = document.createElement('div');
+            timeHeader.className = 'time-header';
+            timeHeader.textContent = 'Time';
+            grid.appendChild(timeHeader);
+            
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            days.forEach((day, index) => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'day-header';
+                const date = new Date(currentWeekStart);
+                date.setDate(date.getDate() + index);
+                dayHeader.innerHTML = `${day}<br><small>${date.getDate()}/${date.getMonth() + 1}</small>`;
+                grid.appendChild(dayHeader);
+            });
+            
+            // Create time slots from 7 AM to 6 PM
+            for (let hour = 7; hour <= 18; hour++) {
+                // Time slot label
+                const timeSlot = document.createElement('div');
+                timeSlot.className = 'time-slot';
+                const timeLabel = hour === 12 ? '12 PM' : hour > 12 ? `${hour - 12} PM` : `${hour} AM`;
+                timeSlot.textContent = timeLabel;
+                grid.appendChild(timeSlot);
+                
+                // Day cells for this hour
+                for (let day = 0; day < 7; day++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'schedule-cell';
+                    
+                    const cellDate = new Date(currentWeekStart);
+                    cellDate.setDate(cellDate.getDate() + day);
+                    cellDate.setHours(hour, 0, 0, 0);
+                    
+                    // Find events for this time slot
+                    const eventsForSlot = calendarEvents.filter(event => {
+                        const eventStart = new Date(event.start);
+                        const eventEnd = new Date(event.end);
+                        const slotEnd = new Date(cellDate);
+                        slotEnd.setHours(hour + 1);
+                        
+                        return eventStart < slotEnd && eventEnd > cellDate;
+                    });
+                    
+                    eventsForSlot.forEach(event => {
+                        const eventDiv = document.createElement('div');
+                        eventDiv.className = 'event';
+                        
+                        const startTime = new Date(event.start);
+                        const endTime = new Date(event.end);
+                        
+                        eventDiv.innerHTML = `
+                            <div class="event-title">${event.summary}</div>
+                            <div class="event-time">${formatTime(startTime)} - ${formatTime(endTime)}</div>
+                            ${event.location ? `<div class="event-location">${event.location}</div>` : ''}
+                        `;
+                        
+                        cell.appendChild(eventDiv);
+                    });
+                    
+                    grid.appendChild(cell);
+                }
+            }
+        }
+        
+        function formatTime(date) {
+            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+        
+        function previousWeek() {
+            currentWeekStart.setDate(currentWeekStart.getDate() - 7);
+            renderSchedule();
+        }
+        
+        function nextWeek() {
+            currentWeekStart.setDate(currentWeekStart.getDate() + 7);
+            renderSchedule();
+        }
+        
+        // Allow Enter key to load schedule
+        document.getElementById('icsUrl').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                loadSchedule();
+            }
+        });
+    </script>
+</body>
+</html>
