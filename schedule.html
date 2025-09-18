@@ -330,11 +330,11 @@
 
         <div class="input-section">
             <div class="instructions">
-                <h3>📋 How to use:</h3>
-                <p><strong>1.</strong> Copy your calendar's ICS/iCal URL (from Blackbaud, Google Calendar, Outlook, etc.)</p>
-                <p><strong>2.</strong> Paste the URL below and click "Load Schedule"</p>
-                <p><strong>3.</strong> Your schedule will appear in a clean weekly view</p>
-                <p><strong>Note:</strong> The URL should end with .ics or contain "ical" - it's the link you use to subscribe to your calendar in other apps.</p>
+                <h3>📋 How to get your Blackbaud calendar:</h3>
+                <p><strong>Step 1:</strong> On Blackbaud → <strong>Calendar</strong> → <strong>Options</strong> → <strong>WebCal Feed</strong> → <strong>My Calendars</strong></p>
+                <p><strong>Step 2:</strong> Highlight the ENTIRE link and choose <strong>Copy</strong></p>
+                <p><strong>Step 3:</strong> Paste the link below (starts with <strong>webcal://</strong> or <strong>https://</strong>)</p>
+                <p><strong>Note:</strong> Your link should look like: <code>webcal://exeter.myschoolapp.com/podium/feed/iCal.aspx?guid=...</code></p>
             </div>
 
             <div class="url-input-container">
@@ -342,7 +342,7 @@
                     type="url" 
                     class="url-input" 
                     id="icsUrl" 
-                    placeholder="Paste your calendar ICS/iCal URL here (e.g., https://example.com/calendar.ics)"
+                    placeholder="webcal://exeter.myschoolapp.com/podium/feed/iCal.aspx?guid=..."
                 >
                 <button class="load-btn" id="loadBtn" onclick="loadSchedule()">
                     Load Schedule
@@ -383,7 +383,7 @@
         currentWeekStart.setHours(0, 0, 0, 0);
 
         async function loadSchedule() {
-            const url = document.getElementById('icsUrl').value.trim();
+            let url = document.getElementById('icsUrl').value.trim();
             const loadBtn = document.getElementById('loadBtn');
             const loading = document.getElementById('loading');
             const error = document.getElementById('error');
@@ -394,8 +394,13 @@
             success.style.display = 'none';
             
             if (!url) {
-                showError('Please enter a calendar URL');
+                showError('Please paste your Blackbaud WebCal link');
                 return;
+            }
+            
+            // Convert webcal:// to https:// for web browsers
+            if (url.startsWith('webcal://')) {
+                url = url.replace('webcal://', 'https://');
             }
             
             // Show loading state
@@ -404,31 +409,45 @@
             loadBtn.textContent = 'Loading...';
             
             try {
-                // Use a CORS proxy to fetch the ICS file
-                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-                const response = await fetch(proxyUrl);
+                // Try direct fetch first (works if CORS is properly configured)
+                let response;
+                let icsData;
                 
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch calendar: ${response.status}`);
+                try {
+                    response = await fetch(url);
+                    if (response.ok) {
+                        icsData = await response.text();
+                    } else {
+                        throw new Error('Direct fetch failed');
+                    }
+                } catch (directError) {
+                    // Fallback to CORS proxy
+                    console.log('Direct fetch failed, trying CORS proxy...');
+                    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+                    response = await fetch(proxyUrl);
+                    
+                    if (!response.ok) {
+                        throw new Error(`Failed to fetch calendar: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    icsData = data.contents;
                 }
                 
-                const data = await response.json();
-                const icsData = data.contents;
-                
                 if (!icsData || !icsData.includes('BEGIN:VCALENDAR')) {
-                    throw new Error('Invalid ICS format - make sure you\'re using a calendar subscription URL');
+                    throw new Error('Invalid calendar format. Make sure you copied the complete WebCal link from Blackbaud.');
                 }
                 
                 // Parse ICS data
                 calendarEvents = parseICS(icsData);
                 
                 if (calendarEvents.length === 0) {
-                    showError('No events found in the calendar');
+                    showError('No events found in the calendar. Make sure your Blackbaud calendar has events.');
                     return;
                 }
                 
                 // Show success and render schedule
-                success.textContent = `Successfully loaded ${calendarEvents.length} events!`;
+                success.textContent = `Successfully loaded ${calendarEvents.length} events from your Blackbaud calendar!`;
                 success.style.display = 'block';
                 
                 renderSchedule();
@@ -442,7 +461,17 @@
                 
             } catch (err) {
                 console.error('Error loading calendar:', err);
-                showError('Failed to load calendar. Please check the URL and try again. Make sure it\'s a public calendar URL.');
+                let errorMessage = 'Failed to load calendar. ';
+                
+                if (err.message.includes('CORS')) {
+                    errorMessage += 'This might be due to browser security restrictions. Try using the mobile app instead.';
+                } else if (err.message.includes('404') || err.message.includes('403')) {
+                    errorMessage += 'Please check that you copied the complete WebCal link from Blackbaud.';
+                } else {
+                    errorMessage += 'Please verify your WebCal link is correct and try again.';
+                }
+                
+                showError(errorMessage);
             } finally {
                 loading.style.display = 'none';
                 loadBtn.disabled = false;
