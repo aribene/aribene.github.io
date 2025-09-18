@@ -330,11 +330,15 @@
 
         <div class="input-section">
             <div class="instructions">
-                <h3>📋 How to get your Blackbaud calendar:</h3>
-                <p><strong>Step 1:</strong> On Blackbaud → <strong>Calendar</strong> → <strong>Options</strong> → <strong>WebCal Feed</strong> → <strong>My Calendars</strong></p>
-                <p><strong>Step 2:</strong> Highlight the ENTIRE link and choose <strong>Copy</strong></p>
-                <p><strong>Step 3:</strong> Paste the link below (starts with <strong>webcal://</strong> or <strong>https://</strong>)</p>
-                <p><strong>Note:</strong> Your link should look like: <code>webcal://exeter.myschoolapp.com/podium/feed/iCal.aspx?guid=...</code></p>
+                <h3>📋 Two ways to view your schedule:</h3>
+                <p><strong>Option 1 - Direct Import (Try this first):</strong></p>
+                <p>• On Blackbaud → <strong>Calendar</strong> → <strong>Options</strong> → <strong>WebCal Feed</strong> → <strong>My Calendars</strong></p>
+                <p>• Copy the complete link and paste below</p>
+                
+                <p><strong>Option 2 - File Upload (If Option 1 doesn't work):</strong></p>
+                <p>• Copy your Blackbaud WebCal link</p>
+                <p>• Open a new browser tab, change <code>webcal://</code> to <code>https://</code>, and visit the URL</p>
+                <p>• Save the downloaded .ics file and upload it below</p>
             </div>
 
             <div class="url-input-container">
@@ -345,7 +349,21 @@
                     placeholder="webcal://exeter.myschoolapp.com/podium/feed/iCal.aspx?guid=..."
                 >
                 <button class="load-btn" id="loadBtn" onclick="loadSchedule()">
-                    Load Schedule
+                    Load from URL
+                </button>
+            </div>
+
+            <div style="text-align: center; margin: 15px 0; color: #666; font-weight: 500;">OR</div>
+
+            <div class="file-upload-container" style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <input 
+                    type="file" 
+                    id="icsFile" 
+                    accept=".ics,.ical"
+                    style="flex: 1; min-width: 300px; padding: 15px 20px; border: 2px solid #e1e5e9; border-radius: 12px; font-size: 16px; background: white;"
+                >
+                <button class="load-btn" onclick="loadFromFile()" style="white-space: nowrap;">
+                    Load from File
                 </button>
             </div>
 
@@ -382,6 +400,81 @@
         currentWeekStart.setDate(diff);
         currentWeekStart.setHours(0, 0, 0, 0);
 
+        async function loadFromFile() {
+            const fileInput = document.getElementById('icsFile');
+            const loading = document.getElementById('loading');
+            const error = document.getElementById('error');
+            const success = document.getElementById('success');
+            
+            // Hide previous messages
+            error.style.display = 'none';
+            success.style.display = 'none';
+            
+            if (!fileInput.files || fileInput.files.length === 0) {
+                showError('Please select an .ics calendar file');
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            
+            if (!file.name.toLowerCase().endsWith('.ics') && !file.name.toLowerCase().endsWith('.ical')) {
+                showError('Please select a valid .ics calendar file');
+                return;
+            }
+            
+            // Show loading state
+            loading.style.display = 'block';
+            
+            try {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const icsData = e.target.result;
+                    
+                    if (!icsData || !icsData.includes('BEGIN:VCALENDAR')) {
+                        showError('Invalid calendar file format');
+                        loading.style.display = 'none';
+                        return;
+                    }
+                    
+                    // Parse ICS data
+                    calendarEvents = parseICS(icsData);
+                    
+                    if (calendarEvents.length === 0) {
+                        showError('No events found in the calendar file');
+                        loading.style.display = 'none';
+                        return;
+                    }
+                    
+                    // Show success and render schedule
+                    success.textContent = `Successfully loaded ${calendarEvents.length} events from ${file.name}!`;
+                    success.style.display = 'block';
+                    
+                    renderSchedule();
+                    
+                    // Show week navigation and schedule
+                    document.getElementById('weekNav').style.display = 'flex';
+                    document.getElementById('scheduleContainer').style.display = 'block';
+                    
+                    // Scroll to schedule
+                    document.getElementById('scheduleContainer').scrollIntoView({ behavior: 'smooth' });
+                    
+                    loading.style.display = 'none';
+                };
+                
+                reader.onerror = function() {
+                    showError('Error reading the file');
+                    loading.style.display = 'none';
+                };
+                
+                reader.readAsText(file);
+                
+            } catch (err) {
+                console.error('Error loading file:', err);
+                showError('Failed to load calendar file');
+                loading.style.display = 'none';
+            }
+        }
+        
         async function loadSchedule() {
             let url = document.getElementById('icsUrl').value.trim();
             const loadBtn = document.getElementById('loadBtn');
