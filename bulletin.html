@@ -3,133 +3,214 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bulletin • PEA Commons</title>
+  <title>Family Weekend • PEA Commons</title>
+  <meta name="description" content="PEA Commons • Family Weekend schedule, lunch flow, check-ins, and events." />
   <link rel="stylesheet" href="style.css" />
-  <meta name="description" content="PEA Commons Bulletin — quick updates for Exeter students." />
+  <style>
+    :root {
+      --bg:#0b0b0c;
+      --card:#111214;
+      --text:#f2f3f5;
+      --muted:#a9b0b8;
+      --border:rgba(255,255,255,.08);
+      --pill:#1e2126;
+      --accent:#6ea8fe;
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:var(--bg); color:var(--text); }
+    nav { display:flex; justify-content:space-between; align-items:center; padding:14px 18px; position:sticky; top:0; background:rgba(11,11,12,.75); backdrop-filter: blur(8px); border-bottom:1px solid var(--border); z-index:10; }
+    nav a { color:var(--muted); text-decoration:none; margin-left:14px; padding:6px 10px; border-radius:8px; }
+    nav a.active, nav a:hover { background:var(--pill); color:var(--text); }
+    .container { max-width:980px; margin:24px auto; padding:0 16px; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:20px; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+    h1,h2,h3 { margin:0 0 8px 0; }
+    .muted { color:var(--muted); }
+    .grid { display:grid; gap:14px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+    @media (max-width:900px){ .grid-3,.grid-4{ grid-template-columns:1fr; } .grid-2{ grid-template-columns:1fr; } }
+    .pill { display:inline-block; padding:6px 10px; border-radius:999px; background:var(--pill); color:var(--text); font-size:12px; }
+    .row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .kicker { font-size:12px; letter-spacing:.2px; text-transform:uppercase; color:var(--muted); }
+    .btn { display:inline-block; padding:10px 12px; background:#1b1e23; color:var(--text); text-decoration:none; border:1px solid var(--border); border-radius:10px; }
+    .table { width:100%; border-collapse: collapse; }
+    .table th, .table td { padding:10px 12px; border-bottom: 1px solid var(--border); text-align:left; }
+    .list { display:grid; gap:12px; }
+    .event { padding:14px; border:1px solid var(--border); border-radius:12px; background:rgba(255,255,255,.02); }
+    .event .time { font-weight:600; }
+    .tabs { display:flex; gap:8px; margin-bottom:12px; }
+    .tabs button { padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:var(--pill); color:var(--text); cursor:pointer; }
+    .tabs button.active { outline:2px solid var(--accent); }
+    .sr { position:absolute; left:-9999px; }
+    a.inline { color:var(--accent); }
+  </style>
 </head>
 <body>
-  <!-- NAV -->
   <nav>
     <div style="font-weight:700; letter-spacing:.2px;">PEA Commons</div>
     <div>
       <a href="index.html">Home</a>
-      <a href="bulletin.html">Bulletin</a>
+      <a class="active" href="bulletin.html">Family Weekend</a>
     </div>
   </nav>
+
   <main class="container">
     <!-- Header -->
-    <section style="background:var(--card); border-radius:16px; padding:22px; box-shadow:0 6px 18px rgba(0,0,0,.06); border:1px solid rgba(0,0,0,.06); margin-top:0px;">
-      <h1 style="margin:0 0 6px 0; font-size:30px;">Welcome to the PEA Commons Bulletin!</h1>
-      <p style="margin:0; color:var(--muted);">
-        Announcements, upcoming events, and more.
-      </p>
+    <section class="card">
+      <div class="kicker">Family Weekend 2025</div>
+      <h1>Welcome, families and students</h1>
+      <p class="muted">Schedules, meals, events, worship, and quick reminders for <span id="dateRange">Oct 10–12</span>.</p>
     </section>
 
-    <!-- Grade Schedule Section -->
-    <section style="background:var(--card); border-radius:16px; padding:22px; box-shadow:0 6px 18px rgba(0,0,0,.06); border:1px solid rgba(0,0,0,.06); margin-top:24px;">
-      <h2 style="margin:0 0 12px 0; font-size:24px;">Class Schedule</h2>
-      <div style="margin-bottom:20px;">
-        <label for="gradeSelect" style="display:block; margin-bottom:8px; font-weight:500;">Select your grade:</label>
-        <select id="gradeSelect" style="padding:10px 12px; border:1px solid rgba(0,0,0,.2); border-radius:8px; background:white; font-size:16px; width:200px;">
-          <option value="">Choose your grade...</option>
-          <option value="prep">Prep</option>
-          <option value="lower">Lower</option>
-          <option value="upper">Upper</option>
-          <option value="senior">Senior</option>
-        </select>
+    <!-- At a Glance -->
+    <section class="grid grid-3" style="margin-top:16px;">
+      <div class="card">
+        <h2 style="margin-bottom:6px;">Friday Lunch Flow</h2>
+        <p class="muted" id="lunchLabel"></p>
+        <table class="table" id="lunchTable"></table>
       </div>
-      <div id="scheduleContainer" style="display:none;">
-        <h3 id="scheduleTitle" style="margin:0 0 16px 0; font-size:20px; text-transform:capitalize;"></h3>
-        <div id="scheduleItems" style="display:grid; gap:12px;"></div>
+
+      <div class="card">
+        <h2 style="margin-bottom:6px;">Check-ins</h2>
+        <ul id="checkIns" class="list" style="margin:0; padding:0; list-style:none;"></ul>
+      </div>
+
+      <div class="card">
+        <h2 style="margin-bottom:6px;">Notices</h2>
+        <ul id="notices" class="list" style="margin:0; padding:0; list-style:none;"></ul>
+        <div style="margin-top:14px;">
+          <div class="kicker" style="margin-bottom:6px;">Transportation</div>
+          <ul id="transport" class="list" style="margin:0; padding:0; list-style:none;"></ul>
+        </div>
       </div>
     </section>
 
-    <!-- Posts container -->
-    <section id="posts" style="margin-top:24px; display:grid; gap:16px;">
-      <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06); color:var(--muted);">
-        Select a grade above to view your schedule.
+    <!-- Day Tabs -->
+    <section class="card" style="margin-top:16px;">
+      <div class="tabs" role="tablist" aria-label="Days">
+        <button role="tab" id="tab-fri" aria-controls="panel-fri" aria-selected="true" class="active">Friday</button>
+        <button role="tab" id="tab-sat" aria-controls="panel-sat" aria-selected="false">Saturday</button>
+        <button role="tab" id="tab-sun" aria-controls="panel-sun" aria-selected="false">Sunday</button>
+      </div>
+
+      <div id="panel-fri" role="tabpanel" aria-labelledby="tab-fri">
+        <h3 id="head-fri" style="margin-bottom:10px;">Friday</h3>
+        <div id="list-fri" class="list"></div>
+      </div>
+      <div id="panel-sat" role="tabpanel" aria-labelledby="tab-sat" hidden>
+        <h3 id="head-sat" style="margin-bottom:10px;">Saturday</h3>
+        <div id="list-sat" class="list"></div>
+      </div>
+      <div id="panel-sun" role="tabpanel" aria-labelledby="tab-sun" hidden>
+        <h3 id="head-sun" style="margin-bottom:10px;">Sunday</h3>
+        <div id="list-sun" class="list"></div>
       </div>
     </section>
-    <!-- Footer -->
-   
+
+    <!-- Other on-campus -->
+    <section class="card" style="margin-top:16px;">
+      <h2 style="margin-bottom:6px;">Other on-campus hours</h2>
+      <ul id="otherOnCampus" class="list" style="margin:0; padding:0; list-style:none;"></ul>
+    </section>
+
+    <!-- Worship -->
+    <section class="card" style="margin-top:16px;">
+      <h2 style="margin-bottom:6px;">Local Houses of Worship</h2>
+      <p class="muted" style="margin-bottom:10px;">Times vary; check each site for service schedules.</p>
+      <div id="worship" class="grid grid-3"></div>
+    </section>
+
+    <p class="muted" style="margin-top:16px; text-align:center; font-size:12px;">
+      Built from the official Family Weekend schedule and Dean’s office note. For athletics schedules, visit <span class="inline">weareexeter.com</span>.
+    </p>
+  </main>
+
   <script>
-    // Grade schedule functionality
-    let scheduleData = {};
+    let data = null;
 
-    async function loadSchedules() {
-      try {
-        const res = await fetch('posts.json?v=' + Date.now());
-        if (!res.ok) throw new Error('Failed to fetch posts.json');
-        scheduleData = await res.json();
-        console.log('Loaded schedule data:', scheduleData); // Debug log
-      } catch (err) {
-        console.error('Error loading schedules:', err);
-      }
+    async function load() {
+      const res = await fetch('posts.json?v=' + Date.now());
+      data = await res.json();
+
+      // Header date
+      document.getElementById('dateRange').textContent = `${data.meta.dates.fri}–${data.meta.dates.sun}`;
+
+      // Lunch flow
+      const lunch = data.atAGlance.lunchByGrade;
+      document.getElementById('lunchLabel').textContent = lunch.label;
+      const lunchTable = document.getElementById('lunchTable');
+      lunchTable.innerHTML = '<thead><tr><th>Location</th><th>Time</th><th>Who</th></tr></thead><tbody>' +
+        lunch.windows.map(w => `<tr><td>${w.where}</td><td>${w.time}</td><td>${w.who}</td></tr>`).join('') +
+      '</tbody>';
+
+      // Check-ins
+      const ci = document.getElementById('checkIns');
+      ci.innerHTML = data.atAGlance.checkIns.map(c => `<li class="event"><div class="row"><span class="pill">${c.day}</span><span>${c.detail}</span></div></li>`).join('');
+
+      // Notices
+      const notices = document.getElementById('notices');
+      notices.innerHTML = data.atAGlance.notices.map(n => `<li class="event"><div class="time" style="margin-bottom:4px;">${n.title}</div><div class="muted">${n.body}</div></li>`).join('');
+
+      // Transportation
+      const transport = document.getElementById('transport');
+      transport.innerHTML = data.atAGlance.transportation.map(t => `<li class="event"><div class="time" style="margin-bottom:4px;">${t.title}</div><div class="muted">${t.body}</div></li>`).join('');
+
+      // Day lists
+      renderDay('fri', data.fri);
+      renderDay('sat', data.sat);
+      renderDay('sun', data.sun);
+
+      // Other on campus
+      const other = document.getElementById('otherOnCampus');
+      other.innerHTML = data.otherOnCampus.map(o => `<li class="event"><div class="time">${o.title}</div><div class="muted">${o.hours}</div></li>`).join('');
+
+      // Worship
+      const worship = document.getElementById('worship');
+      worship.innerHTML = data.worship.map(w => `
+        <div class="event">
+          <div class="row"><span class="pill">${w.tradition}</span><strong>${w.name}</strong></div>
+          <div class="muted" style="margin-top:6px;">${w.address}${w.phone ? ' • ' + w.phone : ''}</div>
+          ${w.url ? `<div style="margin-top:6px;"><a class="inline" href="${w.url}" target="_blank" rel="noopener noreferrer">Website</a></div>` : ''}
+        </div>
+      `).join('');
+
+      // Tabs
+      initTabs();
     }
 
-    function displaySchedule(grade) {
-      const container = document.getElementById('scheduleContainer');
-      const title = document.getElementById('scheduleTitle');
-      const itemsContainer = document.getElementById('scheduleItems');
-      
-      console.log('Displaying schedule for grade:', grade); // Debug log
-      console.log('Available grades:', Object.keys(scheduleData)); // Debug log
-      
-      if (!grade || !scheduleData[grade]) {
-        container.style.display = 'none';
-        return;
-      }
+    function renderDay(key, items) {
+      document.getElementById('head-' + key).textContent = data.meta.dates[key];
+      const list = document.getElementById('list-' + key);
+      list.innerHTML = items.map(ev => `
+        <div class="event">
+          <div class="row" style="justify-content:space-between;">
+            <div class="row">
+              <span class="pill">${ev.time}</span>
+              <div style="font-weight:600;">${ev.title}</div>
+            </div>
+            ${ev.location ? `<div class="muted" style="white-space:nowrap;">${ev.location}</div>` : ''}
+          </div>
+          ${ev.details ? `<div class="muted" style="margin-top:6px;">${ev.details}</div>` : ''}
+        </div>
+      `).join('');
+    }
 
-      title.textContent = `${grade.charAt(0).toUpperCase() + grade.slice(1)} Class Schedule`;
-      itemsContainer.innerHTML = '';
-      
-      scheduleData[grade].forEach(item => {
-        const scheduleItem = document.createElement('div');
-        scheduleItem.style.cssText = "background:rgba(0,0,0,.02); border-radius:10px; padding:16px; border:1px solid rgba(0,0,0,.08);";
-        
-        const header = document.createElement('div');
-        header.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:8px;";
-        
-        const itemTitle = document.createElement('h4');
-        itemTitle.style.cssText = "margin:0; font-size:18px; color:var(--text);";
-        itemTitle.textContent = item.title;
-        
-        const time = document.createElement('span');
-        time.style.cssText = "color:var(--muted); font-size:14px; font-weight:500; white-space:nowrap;";
-        time.textContent = item.time;
-        
-        header.appendChild(itemTitle);
-        header.appendChild(time);
-        
-        const body = document.createElement('p');
-        body.style.cssText = "margin:0; color:var(--text); line-height:1.5;";
-        body.textContent = item.body;
-        
-        scheduleItem.appendChild(header);
-        scheduleItem.appendChild(body);
-        itemsContainer.appendChild(scheduleItem);
+    function initTabs() {
+      const tabs = ['fri','sat','sun'];
+      tabs.forEach(name => {
+        const btn = document.getElementById('tab-' + name);
+        btn.addEventListener('click', () => {
+          tabs.forEach(n => {
+            document.getElementById('tab-' + n).classList.toggle('active', n === name);
+            document.getElementById('panel-' + n).hidden = n !== name;
+            document.getElementById('tab-' + n).setAttribute('aria-selected', n === name ? 'true' : 'false');
+          });
+        });
       });
-      
-      container.style.display = 'block';
     }
 
-    // Event listener for grade selection
-    document.getElementById('gradeSelect').addEventListener('change', function(e) {
-      displaySchedule(e.target.value);
-    });
-
-    // Initialize schedules
-    loadSchedules();
-
-    // footer year
-    // highlight current nav link
-    const path = location.pathname.replace(/\/+$/, "");
-    document.querySelectorAll("nav a").forEach(a => {
-      const href = a.getAttribute("href").replace(/\/+$/, "");
-      if ((path === "" && href === "index.html") || path.endsWith(href)) {
-        a.classList.add("active");
-      }
-    });
+    load();
   </script>
 </body>
 </html>
