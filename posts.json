@@ -1,125 +1,193 @@
 {
-  "prep": [
+  "meta": {
+    "title": "Family Weekend 2025",
+    "dates": {
+      "fri": "Friday, Oct 10",
+      "sat": "Saturday, Oct 11",
+      "sun": "Sunday, Oct 12"
+    },
+    "lastUpdated": "2025-10-10T00:00:00-04:00"
+  },
+
+  "atAGlance": {
+    "notices": [
+      {
+        "title": "Classes in Irregular Spaces",
+        "body": "If you have any classes located in the New Dining Hall meeting rooms, please let your family know those rooms aren’t large enough to accommodate visitors."
+      }
+    ],
+    "lunchByGrade": {
+      "label": "Friday Lunch Flow (please follow these windows)",
+      "windows": [
+        { "where": "Elm Street", "time": "12:00–12:45", "who": "Seniors & families" },
+        { "where": "New Dining Hall", "time": "12:00–12:45", "who": "Uppers & families" },
+        { "where": "Elm Street", "time": "12:45–1:30", "who": "Lowers & families" },
+        { "where": "New Dining Hall", "time": "12:45–1:30", "who": "Preps & families" }
+      ]
+    },
+    "checkIns": [
+      { "day": "Friday", "detail": "Regular check-in: 8pm Preps & Lowers, 9pm Uppers, 10pm Seniors" },
+      { "day": "Saturday", "detail": "11pm check-in (all students)" },
+      { "day": "Sunday", "detail": "10pm check-in (all students)" }
+    ],
+    "transportation": [
+      {
+        "title": "Return ride from Logan Airport (Monday, 6pm)",
+        "body": "Advance registration required; closes Thu 10/9 at midnight. Sign up on myExeter → Resources → Campus Services. Questions: transportation@exeter.edu"
+      }
+    ]
+  },
+
+  "fri": [
     {
-      "title": "Eat Breakfast",
-      "time": "7:00–8:00 AM",
-      "body": "Don't skip it! Grab any meds from the Health Center before you leave. Bring your inhaler/epi-pen if you need one."
+      "time": "8:00–4:00",
+      "title": "Registration & Name Tag Pickup",
+      "location": "Phelps Science Center, Grainger Hall, Tan Lane",
+      "details": "Reps from E&R Laundry, Citizen’s Bank, and Balfour Ring in the lobby."
+    },
+    { "time": "9:00–9:50", "title": "C format", "location": "", "details": "" },
+    {
+      "time": "10:00–10:50",
+      "title": "Cracking Teen’s Secret Code (Dr. Chris Thurber, CAPS)",
+      "location": "Forrestal-Bowld Music Center, The Bowld",
+      "details": "How to listen for subtext and keep conversations going."
     },
     {
-      "title": "Meet in Thomson Gym",
-      "time": "8:00 AM",
-      "body": "Don't be late—we roll out together."
+      "time": "10:00–10:50",
+      "title": "Global Initiatives",
+      "location": "Elizabeth Phillips Academy Center, The Forum (3rd floor)",
+      "details": "Overview of Exeter’s programs abroad."
     },
     {
-      "title": "Browne Center Activities",
-      "time": "9:30 AM–3:00 PM",
-      "body": "Outdoor team games, problem-solving, and adventure challenges (some on the ground, some climbing!). All \"challenge by choice,\" so you set your level. Dress for the weather + check the attached \"What to Wear\" list."
+      "time": "10:00–10:50 (drop-in)",
+      "title": "Open Houses",
+      "location": "OMA (Jeremiah Smith, ground floor); Learning Specialist (EPAC B023); Student Activities & Transportation (EPAC 2nd, 210); Parent Committee Coffee (Thompson Fieldhouse 2nd, Hahn room)",
+      "details": "Meet staff, ask questions; Assembly livestream available."
     },
     {
-      "title": "Back on Campus",
-      "time": "After 3:00 PM",
-      "body": "Your activities (dance, music, athletics) + dinner on your own."
+      "time": "10:10–10:50",
+      "title": "Assembly: Serhii Plokhii",
+      "location": "Love Gym",
+      "details": "The history of Ukrainian–Russian relations and the path to peace. Families welcome as space allows."
+    },
+    { "time": "11:10–12:00", "title": "A format / PE1", "location": "", "details": "" },
+    {
+      "time": "11:10–12:00",
+      "title": "Open Music Rehearsals",
+      "location": "Forrestal Bowld Music Center",
+      "details": "Jazz Ensemble (Landers Hall); Concert Choir (Powell Hall); Chamber Orchestra (Bowld); Modern Music Making (Round Room)."
     },
     {
-      "title": "Ice Cream Social @ Phelps Stadium 🍦",
-      "time": "6:45–7:45 PM",
-      "body": "Chill, hang out, celebrate the day."
+      "time": "11:30–1:45",
+      "title": "Lunch in Dining Halls",
+      "location": "Elm Street & New Dining Hall",
+      "details": "Please follow the grade-based windows in the Friday Lunch Flow above."
+    },
+    {
+      "time": "12:45",
+      "title": "Jummah Prayer/Lunch",
+      "location": "Phillips Church & Multifaith Center",
+      "details": ""
+    },
+    {
+      "time": "1:30–3:30",
+      "title": "Meet & Greet your College Counselor",
+      "location": "College Counseling Office, 26 Tan Lane",
+      "details": "Senior families: quick chats with counselors."
+    },
+    { "time": "1:40–2:30", "title": "E format", "location": "", "details": "" },
+    { "time": "2:40–3:30", "title": "F format", "location": "", "details": "" },
+    { "time": "3:00–3:50", "title": "PE3", "location": "", "details": "" },
+    { "time": "4:00–4:50", "title": "PE4", "location": "", "details": "" },
+    { "time": "4:00–5:45", "title": "Athletics", "location": "", "details": "See weareexeter.com for schedules." },
+    {
+      "time": "4:00–5:45",
+      "title": "Fall Dance Company — Open Rehearsal",
+      "location": "Goel Theater, Performance Studio (3rd floor, Rm 306)",
+      "details": ""
+    },
+    {
+      "time": "4:00–5:45",
+      "title": "Theater Open Rehearsals",
+      "location": "Goel Theater",
+      "details": "Macbeth (1st floor, Rm 119); New Plays Ensemble (Actor’s Lab, 1st floor, Rm 129)."
+    },
+    { "time": "5:00–7:00", "title": "Dinner", "location": "Elm Street & New Dining Hall", "details": "" },
+    { "time": "6:00", "title": "Exeter Jewish Community Shabbat", "location": "Under the Sukkah, Phillips Church", "details": "" },
+    { "time": "6:00–8:00", "title": "Design Lab Open House", "location": "Phillips Science Center, 3rd floor, Rm 317", "details": "" },
+    {
+      "time": "7:00–7:55",
+      "title": "Open Music Rehearsals (Evening)",
+      "location": "Forrestal Bowld Music Center",
+      "details": "7:00–7:30 Exeter Choral Union (Powell); 7:00–7:30 Symphonia Orchestra (Bowld); 7:30–7:55 Concert Choir (Powell); 7:30–7:55 Symphony Orchestra (Bowld)."
     }
   ],
-  "lower": [
+
+  "sat": [
+    { "time": "7:00–9:00", "title": "Breakfast for Families", "location": "Elm Street Dining Hall", "details": "" },
+    { "time": "7:30–10:30", "title": "Registration & Nametag Pickup", "location": "Phelps Science Center, Grainger Hall", "details": "" },
     {
-      "title": "Orientation Day",
-      "time": "Thursday, September 4",
-      "body": "Start Time: 8:15 AM. Meeting Location: The library lawn, specifically near the memorial."
+      "time": "8:00–8:45",
+      "title": "College Counseling Programs by Class",
+      "location": "’26: Phillips Church Sanctuary; ’27: The Bowld; ’28: The Forum (EPAC, 3rd floor)",
+      "details": "Timeline, resources, support, and key dates."
     },
     {
-      "title": "Team-building Workshops",
-      "time": "Throughout the Day",
-      "body": "Led by the dynamic team from Thrive."
+      "time": "8:00–8:45",
+      "title": "Prep Parent Coffee",
+      "location": "Library Commons, Ground floor",
+      "details": "Meet the 9th Grade Coordinator, Deans, and CAPS representative."
     },
+    { "time": "9:00–9:50", "title": "B format", "location": "", "details": "" },
+    { "time": "10:00–10:50", "title": "D format", "location": "", "details": "" },
     {
-      "title": "Downtown Exeter Scavenger Hunt",
-      "time": "Throughout the Day",
-      "body": "Using the Goosechase app (one group member will need to download the app), where you'll explore local shops and sample various food items."
+      "time": "11:00–11:50",
+      "title": "Conversation with Academy Leadership",
+      "location": "Goel Theater, Court Street",
+      "details": "Principal Rawson, Vice Principal Page, Dean Foley, Dean Taylor, Director Bramlet."
+    },
+    { "time": "11:00", "title": "Organ Students Performance", "location": "Phillips Church & Multifaith Center, Chapel", "details": "" },
+    { "time": "11:30–1:45", "title": "Lunch for Families", "location": "Elm Street & New Dining Hall", "details": "" },
+    { "time": "12:00–12:50", "title": "G format", "location": "", "details": "" },
+    {
+      "time": "1:00–1:30",
+      "title": "First Generation to College Family Gathering",
+      "location": "Phillips Church & Multifaith Center, Stuckey Room",
+      "details": "If your Exonian will be the first in your family to attend college, join for community."
+    },
+    { "time": "1:45–6:30", "title": "Athletics", "location": "", "details": "See weareexeter.com for schedules." },
+    { "time": "5:00–7:00", "title": "Dinner for Families", "location": "Elm Street Dining Hall", "details": "" },
+    {
+      "time": "8:00–10:45",
+      "title": "Student Activities — EPAC Chill",
+      "location": "Elizabeth Phillips Academy Center",
+      "details": "Make-and-take fall crafts, movie screening, open game room."
     }
   ],
-  "upper": [
-    {
-      "title": "Breakfast",
-      "time": "7:00–8:25 AM",
-      "body": "Breakfast will be open in either New Dining Hall and Elm Street. Grab something before heading over to Goel."
-    },
-    {
-      "title": "Meet at Goel",
-      "time": "8:25–9:00 AM",
-      "body": "Get briefed on the day and receive supplies and info."
-    },
-    {
-      "title": "Load Buses & Collect Phones",
-      "time": "9:00–9:15 AM",
-      "body": "Preparation for Portsmouth trip."
-    },
-    {
-      "title": "Head to Portsmouth",
-      "time": "9:15–9:45 AM",
-      "body": "Drop off at Prescott Park."
-    },
-    {
-      "title": "Explore Portsmouth",
-      "time": "9:45–11:30 AM",
-      "body": "Explore Portsmouth for 1.5-2 hours (we will provide a map). Grab yourself a snack or a drink, spend time with people in a new place and have some fun."
-    },
-    {
-      "title": "Walk to Lunch",
-      "time": "11:30–11:45 AM",
-      "body": "Walk over to Lunch at Four Tree Island."
-    },
-    {
-      "title": "Lunch",
-      "time": "11:45 AM–12:45 PM",
-      "body": "Lunch from Bennett's Sandwich Shop. We will have this hour to eat, unwind, play games, etc."
-    },
-    {
-      "title": "Load Buses & Head Back",
-      "time": "12:45–1:15 PM",
-      "body": "Load buses at Prescott Park and head back to PEA."
-    },
-    {
-      "title": "Reflection and Debrief",
-      "time": "1:15–1:45 PM",
-      "body": "Reflection and debrief at Goel to end the day!"
-    }
+
+  "sun": [
+    { "time": "9:00–12:30", "title": "Brunch", "location": "Elm Street Dining Hall", "details": "" },
+    { "time": "2:00", "title": "Buddhist Meditation", "location": "Phillips Church & Multifaith Center, 2nd floor, Wicks Room", "details": "" },
+    { "time": "7:00–9:30", "title": "Student Activities — Open Skate", "location": "Love Gym, Ice Rinks", "details": "" }
   ],
-  "senior": [
-    {
-      "title": "Breakfast",
-      "time": "7:00–9:00 AM",
-      "body": "Both dining halls are open for breakfast."
-    },
-    {
-      "title": "Arrive to the Field House",
-      "time": "9:15 AM",
-      "body": "Meeting location for the day's activities."
-    },
-    {
-      "title": "Group Activities with Bald Mountain Meadow",
-      "time": "9:30 AM–Noon",
-      "body": "We will share group assignments on Wednesday."
-    },
-    {
-      "title": "Lunch in the Wrestling Room",
-      "time": "Noon–1:00 PM",
-      "body": "Lunch in the Wrestling Room of the Field House."
-    },
-    {
-      "title": "Field Day",
-      "time": "1:15–2:30 PM",
-      "body": "We will share team assignments on Wednesday."
-    },
-    {
-      "title": "Inaugural Senior Class Dinner",
-      "time": "6:30–8:00 PM",
-      "body": "Inaugural Senior Class Dinner in the Wrestling Room of the Field House."
-    }
+
+  "otherOnCampus": [
+    { "title": "Class of 1945 Library", "hours": "Fri 8:00am–4:00pm; Sat 8:00am–1:00pm" },
+    { "title": "Lamont Gallery (Strange Kin)", "hours": "Fri 9:00am–5:00pm; Sat 10:00am–4:00pm" }
+  ],
+
+  "worship": [
+    { "tradition": "Catholic", "name": "St. Michael Parish", "address": "9 Lincoln St, Exeter, NH 03833", "phone": "603-772-2494", "url": "https://stmichaelparish.org/" },
+    { "tradition": "Congregational", "name": "The Congregational Church of Exeter", "address": "21 Front St, Exeter, NH 03833", "phone": "603-772-4216", "url": "https://www.exeterucc.org/" },
+    { "tradition": "Episcopal", "name": "Christ Church", "address": "43 Pine St, Exeter, NH 03833", "phone": "603-772-3332", "url": "https://christchurchexeter.org/" },
+    { "tradition": "Greek Orthodox", "name": "St. Nicholas Greek Orthodox Church", "address": "40 Andrew Jarvis Dr, Portsmouth, NH 03801", "phone": "603-436-2733", "url": "https://www.stnicholasportsmouthnh.org/" },
+    { "tradition": "Methodist", "name": "Exeter United Methodist Church", "address": "307 Epping Rd, Exeter, NH 03833", "phone": "603-772-6625", "url": "" },
+    { "tradition": "Presbyterian", "name": "Exeter Presbyterian Church", "address": "73 Winter St, Exeter, NH 03833", "phone": "603-772-7475", "url": "https://exeterpca.org/" },
+    { "tradition": "Unitarian", "name": "First Unitarian Universalist Society of Exeter", "address": "12 Elm St, Exeter, NH 03833", "phone": "603-772-4002", "url": "https://www.exeteruu.org/" },
+    { "tradition": "Russian Orthodox", "name": "The Orthodox Church of Saint John the Russian", "address": "Riley Ave & Lafayette Rd, Ipswich, MA 01938", "phone": "978-808-6024", "url": "https://www.stjohntherussian.com/" },
+    { "tradition": "Non-Denominational", "name": "Regeneration Church", "address": "4 Elm St, Exeter, NH 03833", "phone": "603-772-8803", "url": "https://www.regenchurchnh.com/" },
+    { "tradition": "Non-Denominational", "name": "Riverside Church", "address": "47A Hampton Falls Rd, Exeter, NH 03833", "phone": "603-988-7339", "url": "https://riversidenh.org/" },
+    { "tradition": "Jewish", "name": "Temple Israel", "address": "200 State St, Portsmouth, NH 03801", "phone": "603-436-5301", "url": "https://www.templeisraelnh.org/" },
+    { "tradition": "Muslim", "name": "Islamic Society of the Seacoast Area", "address": "355 Spinney Rd, Portsmouth, NH 03801", "phone": "603-559-1000", "url": "" }
   ]
 }
