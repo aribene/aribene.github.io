@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Workshops & Locations</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Light, optional helpers in case style.css is empty */
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; }
+    .wrap { max-width: 900px; margin: 0 auto; }
+    h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+    .sub { color: #666; margin-bottom: 1rem; }
+    .controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 16px 0 8px; }
+    select { padding: 8px 10px; font-size: 1rem; }
+    .note { font-size: 0.95rem; color: #444; margin: 6px 0 16px; }
+    .list { margin-top: 8px; }
+    .item { border: 1px solid #e5e5e5; border-radius: 10px; padding: 12px 14px; margin: 10px 0; }
+    .title { font-weight: 600; }
+    .loc { color: #333; margin-top: 4px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Workshop Finder</h1>
+    <p class="sub">Pick your grade to see your session and where to go.</p>
+
+    <div class="controls">
+      <label for="gradeSelect"><strong>Grade:</strong></label>
+      <select id="gradeSelect" aria-label="Select your grade">
+        <option value="" selected disabled>Choose grade…</option>
+        <option value="prep">Prep</option>
+        <option value="lower">Lower</option>
+        <option value="upper">Upper</option>
+        <option value="senior">Senior</option>
+      </select>
+    </div>
+
+    <div id="helperNote" class="note hidden"></div>
+    <div id="results" class="list"></div>
+  </div>
+
+  <script>
+    // Data: titles + locations only (as requested)
+    const DATA = {
+      prep: [
+        { title: "23B. Time management and Goal Setting", location: "Science 207" },
+        { title: "2. Required Grade 11 on November 3: Leadership Training", location: "Grainger Auditorium (Science 1st floor)" },
+        { title: "3B. Effective Learning Strategies in STEM", location: "Science 304" },
+        { title: "10B. How do I know if what I read online is true? A lesson in determining online source credibility", location: "J.Smith 211" },
+        { title: "11B. Basic Library Research Skills for History", location: "Library - Rockefeller Hall" },
+        { title: "12B. The Exeter Files: Primary Source Research Skills", location: "Archives (Library Basement level)" },
+        { title: "13B. Finding Mindfulness Through Leisure at the Library", location: "Library Commons" },
+        { title: "14B. Citation Shortcuts with Chicago", location: "Library Commons" },
+        { title: "15B. Using NoodleTools for Citation Creation and Research Paper Management", location: "Library classroom 460" },
+        { title: "16B. Citations 101, with Chicago/Turabian", location: "Library classroom 470" },
+        { title: "17B. AI Pulse Check: How is Exeter Navigating AI?", location: "Science 314" },
+        { title: "18B. Who Told You Not to Ask?: Barriers to Seeking Out Support Across Identity", location: "Science 318" },
+        { title: "19B. Sound Bath with Singing Bowls", location: "Health Center Basement" },
+        { title: "20B. Restorative Yoga", location: "Phillips Church - Wicks Room" },
+        { title: "21B. Hacking Implicit Bias", location: "EPAC Forum (third floor)" },
+        { title: "22B. Mindset and Self-talk", location: "Science 315" },
+        { title: "24B. Belonging at the Table", location: "OMA (J.Smith ground floor)" },
+        { title: "25B. Stage Presence", location: "Goel" },
+        { title: "26B. Healthy Sleep Habits", location: "Science 319" },
+        { title: "27B. Nutrition Unwrapped: Trivia & Myth Busters", location: "Science 316" },
+        { title: "28B. How to Make an Omelet", location: "New Dining Hall - Kitchen" },
+        { title: "29B. Exercise Principles for Long-term Physical and Mental Health Benefits", location: "Downer Fitness Center" },
+        { title: "30B. Tote of Thanks", location: "Church Basement" },
+        { title: "4B. Making the Most Out of Every Minute: Note-taking for Biology", location: "Science 206" },
+        { title: "5B. Ace that Bio test: Study tools and test-taking strategies for Biology", location: "Science 306" },
+        { title: "6B. Annotation for English", location: "Science 302" },
+        { title: "7B. Annotation for History", location: "Science 303" },
+        { title: "8B. Preparing for In-Class Writing in English", location: "Science 307" },
+        { title: "9B. Discussion of Gender in Foreign Languages", location: "Sinha Conference Room (Science 1st floor)" }
+      ],
+      lower: [] // same options as Prep
+    };
+
+    // Lower gets the same list as Prep
+    DATA.lower = [...DATA.prep];
+
+    // Upper + Senior are special notices
+    const SPECIAL = {
+      upper: {
+        note: "Upper class program is in Grainger Auditorium (first floor of the science building).",
+        items: [
+          { title: "Upper Class Program", location: "Grainger Auditorium (Science 1st floor)" }
+        ]
+      },
+      senior: {
+        note: "Seniors & PGs: go to the Hahn Center (New Dining Hall). No Sched sign-up required.",
+        items: [
+          { title: "Senior/PG Program", location: "Hahn Center (a.k.a. New Dining Hall)" }
+        ]
+      }
+    };
+
+    const select = document.getElementById("gradeSelect");
+    const results = document.getElementById("results");
+    const helperNote = document.getElementById("helperNote");
+
+    function renderItems(list) {
+      results.innerHTML = "";
+      list.forEach(({ title, location }) => {
+        const div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML = `
+          <div class="title">${title}</div>
+          <div class="loc">Location: ${location}</div>
+        `;
+        results.appendChild(div);
+      });
+    }
+
+    select.addEventListener("change", () => {
+      const grade = select.value;
+      results.innerHTML = "";
+      helperNote.classList.add("hidden");
+      helperNote.textContent = "";
+
+      if (grade === "prep" || grade === "lower") {
+        renderItems(DATA[grade]);
+      } else if (grade === "upper") {
+        helperNote.textContent = SPECIAL.upper.note;
+        helperNote.classList.remove("hidden");
+        renderItems(SPECIAL.upper.items);
+      } else if (grade === "senior") {
+        helperNote.textContent = SPECIAL.senior.note;
+        helperNote.classList.remove("hidden");
+        renderItems(SPECIAL.senior.items);
+      }
+    });
+
+    // Optional: default the dropdown based on a URL hash like #upper
+    // if (location.hash) { const g = location.hash.replace("#", ""); if (["prep","lower","upper","senior"].includes(g)) { select.value = g; select.dispatchEvent(new Event("change")); } }
+  </script>
+
+  <!--
+    If you decide to move the data into posts.json instead:
+    1) Put this JSON in posts.json:
+    {
+      "prep": [ { "title": "...", "location": "..." }, ... ],
+      "lower": [ ...same as prep... ],
+      "upper": { "note": "Upper class program is in Grainger Auditorium (first floor of the science building).", "items": [ { "title": "Upper Class Program", "location": "Grainger Auditorium (Science 1st floor)" } ] },
+      "senior": { "note": "Seniors & PGs: go to the Hahn Center (New Dining Hall). No Sched sign-up required.", "items": [ { "title": "Senior/PG Program", "location": "Hahn Center (a.k.a. New Dining Hall)" } ] }
+    }
+
+    2) Replace the DATA/SPECIAL blocks above with a fetch:
+      fetch('posts.json')
+        .then(r => r.json())
+        .then(json => {
+          DATA.prep = json.prep;
+          DATA.lower = json.lower;
+          SPECIAL.upper = json.upper;
+          SPECIAL.senior = json.senior;
+        });
+
+    Keeping it inline is fine if you don’t need to reuse the data elsewhere.
+  -->
+</body>
+</html>
 
