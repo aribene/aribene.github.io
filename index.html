@@ -1,68 +1,422 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <title>PEA Commons</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#11221a" />
+  <meta
+    name="description"
+    content="PEA Commons brings schedules, dining, campus hours, resources, and safety information into one student-friendly app."
+  />
+  <meta property="og:title" content="PEA Commons — Your campus, in one place" />
+  <meta
+    property="og:description"
+    content="A student-first campus companion built at Phillips Exeter and ready to inspire a better digital campus experience."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://peacommons.com/" />
+  <title>PEA Commons — Your campus, in one place</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- NAV -->
-  <nav>
-    <div style="font-weight:700; letter-spacing:.2px;">PEA Commons</div>
-    <div>
-      <a href="index.html">Home</a>
-      <a href="bulletin.html">Bulletin</a>
-      <a href="schedule.html">Schedule</a>
-    </div>
-  </nav>
-  <!-- MAIN -->
-  <main class="container">
-    <!-- Hero Card -->
-    <section style="background:var(--card); border-radius:16px; padding:24px; box-shadow:0 6px 18px rgba(0,0,0,.06); border:1px solid rgba(0,0,0,.06);">
-      <h1 style="margin:0 0 8px 0; font-size:34px;">Welcome to PEA Commons</h1>
-      <p style="margin:0; color:var(--muted); font-size:18px;">
-        The ultimate app for <strong>schedules</strong>, <strong>dining menus</strong>, <strong>building hours</strong>, and handy campus tools — built by an Exeter student for Exeter students.
-      </p>
-      <!-- App Store button -->
-      <div style="margin-top:12px;">
-        <a class="button"
-           href="https://apps.apple.com/us/app/pea-commons-dc101f/id6751022904"
-           target="_blank" rel="noopener"
-           aria-label="Download on the App Store">
-          Download on the App&nbsp;Store
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="shell nav-wrap">
+      <a class="brand" href="#top" aria-label="PEA Commons home">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </span>
+        <span class="brand-name">PEA Commons</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        data-menu-toggle
+      >
+        <span class="sr-only">Open navigation</span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation" data-nav>
+        <a href="#features">Product</a>
+        <a href="#schools">For schools</a>
+        <a href="#approach">How it works</a>
+        <a class="nav-cta" href="mailto:aribenenson@gmail.com?subject=PEA%20Commons%20for%20our%20school">
+          Bring it to your school
         </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-glow hero-glow-one" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow-two" aria-hidden="true"></div>
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> Built at Phillips Exeter</p>
+          <h1>Your campus,<br /><em>in one place.</em></h1>
+          <p class="hero-lede">
+            PEA Commons gives students one beautifully simple place for the information that shapes every day—classes, meals, campus hours, resources, and more.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="button button-primary"
+              href="mailto:aribenenson@gmail.com?subject=PEA%20Commons%20for%20our%20school"
+            >
+              Explore it for your school
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M4.5 10h11M11 5.5l4.5 4.5-4.5 4.5" />
+              </svg>
+            </a>
+            <a
+              class="app-store-link"
+              href="https://apps.apple.com/us/app/pea-commons/id6751022904"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Download PEA Commons on the App Store"
+            >
+              <svg class="apple-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.7 12.8c0-3 2.5-4.5 2.6-4.6a5.6 5.6 0 0 0-4.4-2.4c-1.9-.2-3.7 1.1-4.6 1.1-.9 0-2.4-1.1-4-1.1a5.9 5.9 0 0 0-5 3c-2.1 3.7-.5 9.2 1.5 12.2 1 1.5 2.2 3.1 3.8 3 1.5-.1 2.1-1 4-1s2.4 1 4 1c1.7 0 2.7-1.5 3.7-3a13.3 13.3 0 0 0 1.7-3.5 5.3 5.3 0 0 1-3.3-4.7ZM15.7 3.9A5.4 5.4 0 0 0 17 .1a5.5 5.5 0 0 0-3.6 1.8 5.1 5.1 0 0 0-1.3 3.7 4.6 4.6 0 0 0 3.6-1.7Z" />
+              </svg>
+              <span><small>Available on the</small>App Store</span>
+            </a>
+          </div>
+          <div class="hero-proof" aria-label="Product highlights">
+            <div>
+              <strong>One app</strong>
+              <span>for the campus day</span>
+            </div>
+            <div>
+              <strong>Student-built</strong>
+              <span>from real campus needs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-stage" aria-label="PEA Commons app preview">
+          <div class="stage-orbit orbit-one" aria-hidden="true"></div>
+          <div class="stage-orbit orbit-two" aria-hidden="true"></div>
+
+          <div class="floating-card dining-card" aria-hidden="true">
+            <span class="mini-icon mini-icon-coral">
+              <svg viewBox="0 0 24 24"><path d="M7 3v7M4.5 3v5.5A1.5 1.5 0 0 0 6 10h1a1.5 1.5 0 0 0 1.5-1.5V3M6.5 10v11M16 3c-2 2.1-3 4.2-3 6.5 0 2 1.1 3.5 3 3.5v8M16 3v10" /></svg>
+            </span>
+            <span><small>Lunch today</small><strong>Elm Dining Hall</strong></span>
+          </div>
+
+          <div class="floating-card status-card" aria-hidden="true">
+            <span class="status-dot"></span>
+            <span><small>Campus status</small><strong>Library open until 11</strong></span>
+          </div>
+
+          <div class="phone-shell">
+            <div class="phone-screen">
+              <div class="phone-topbar">
+                <span>9:41</span>
+                <div class="phone-sensors" aria-hidden="true"><i></i><i></i><i></i></div>
+              </div>
+              <div class="phone-content">
+                <div class="phone-greeting">
+                  <div>
+                    <small>MONDAY, SEPTEMBER 8</small>
+                    <h2>Good morning.</h2>
+                  </div>
+                  <span class="phone-avatar">P</span>
+                </div>
+
+                <div class="phone-next">
+                  <div class="phone-next-label">
+                    <span>Up next</span>
+                    <small>9:10 AM</small>
+                  </div>
+                  <h3>English 310</h3>
+                  <p>Phillips Hall · Room 214</p>
+                  <div class="time-track"><span></span></div>
+                </div>
+
+                <p class="phone-section-title">Around campus</p>
+                <div class="phone-tiles">
+                  <div class="phone-tile tile-menu">
+                    <span class="tile-icon">
+                      <svg viewBox="0 0 24 24"><path d="M7 3v7M4.5 3v5.5A1.5 1.5 0 0 0 6 10h1a1.5 1.5 0 0 0 1.5-1.5V3M6.5 10v11M16 3c-2 2.1-3 4.2-3 6.5 0 2 1.1 3.5 3 3.5v8M16 3v10" /></svg>
+                    </span>
+                    <small>Dining</small>
+                    <strong>View today’s menu</strong>
+                  </div>
+                  <div class="phone-tile tile-hours">
+                    <span class="tile-icon">
+                      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" /><path d="M12 7v5l3.2 2" /></svg>
+                    </span>
+                    <small>Hours</small>
+                    <strong>What’s open now</strong>
+                  </div>
+                </div>
+
+                <div class="phone-quick">
+                  <span class="quick-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 3 4.5 6.2v5.1c0 4.6 3.1 7.9 7.5 9.7 4.4-1.8 7.5-5.1 7.5-9.7V6.2L12 3Z" /><path d="m8.7 12 2.1 2.1 4.5-4.6" /></svg>
+                  </span>
+                  <span><small>Campus resources</small><strong>Help is one tap away</strong></span>
+                  <svg class="chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m7.5 4.5 5 5.5-5 5.5" /></svg>
+                </div>
+              </div>
+              <div class="phone-tabbar" aria-hidden="true">
+                <span class="active"><i></i>Home</span>
+                <span><i></i>Schedule</span>
+                <span><i></i>Campus</span>
+                <span><i></i>More</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-    <!-- Features Heading -->
-    <h2 style="margin-top:36px; margin-bottom:12px; font-size:26px;">Some of the app's features</h2>
-    <!-- Feature Grid -->
-    <section style="display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(230px,1fr));">
-      <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
-        <h3 style="margin:0 0 6px 0;">Dining Hall Menus</h3>
-        <p style="margin:0; color:var(--muted);">See today's offerings at Elm and New Dining Hall.</p>
+
+    <section class="trust-strip" aria-label="Product statement">
+      <div class="shell trust-inner">
+        <p>One clear home for the information students use every day.</p>
+        <div class="trust-items" aria-hidden="true">
+          <span>Schedules</span><i></i>
+          <span>Dining</span><i></i>
+          <span>Campus hours</span><i></i>
+          <span>Resources</span>
+        </div>
       </div>
-      <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
-        <h3 style="margin:0 0 6px 0;">Live Building Status</h3>
-        <p style="margin:0; color:var(--muted);">Check what's open right now across campus.</p>
+    </section>
+
+    <section class="section section-features" id="features">
+      <div class="shell">
+        <div class="section-heading split-heading">
+          <div>
+            <p class="eyebrow eyebrow-dark"><span></span> The product</p>
+            <h2>The everyday campus experience, thoughtfully connected.</h2>
+          </div>
+          <p>
+            Students should not have to search across portals, PDFs, websites, and bookmarks just to navigate their day. PEA Commons makes the essentials feel immediate.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card feature-card-wide">
+            <div class="feature-copy">
+              <span class="feature-number">01</span>
+              <div>
+                <h3>A schedule that keeps up</h3>
+                <p>Personal classes and campus calendars come together in a clear view students can understand at a glance.</p>
+              </div>
+            </div>
+            <div class="schedule-visual" aria-hidden="true">
+              <div class="schedule-day"><span>MON</span><strong>08</strong></div>
+              <div class="schedule-list">
+                <div><time>8:00</time><span class="event-line event-green"></span><p><strong>Mathematics</strong><small>Academy Building</small></p></div>
+                <div><time>9:10</time><span class="event-line event-coral"></span><p><strong>English</strong><small>Phillips Hall</small></p></div>
+                <div><time>10:20</time><span class="event-line event-gold"></span><p><strong>Free period</strong><small>Your time</small></p></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <span class="feature-icon feature-icon-coral">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v7M4.5 3v5.5A1.5 1.5 0 0 0 6 10h1a1.5 1.5 0 0 0 1.5-1.5V3M6.5 10v11M16 3c-2 2.1-3 4.2-3 6.5 0 2 1.1 3.5 3 3.5v8M16 3v10" /></svg>
+            </span>
+            <span class="feature-number">02</span>
+            <h3>Dining without the guesswork</h3>
+            <p>Today’s options from campus dining halls, available before students make the walk.</p>
+            <div class="menu-tags" aria-hidden="true"><span>Breakfast</span><span class="active">Lunch</span><span>Dinner</span></div>
+          </article>
+
+          <article class="feature-card feature-card-dark">
+            <span class="feature-icon feature-icon-mint">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" /><path d="M12 7v5l3.2 2" /></svg>
+            </span>
+            <span class="feature-number">03</span>
+            <h3>Know what’s open</h3>
+            <p>Live building status and hours help students make better decisions between classes.</p>
+            <div class="open-pill" aria-hidden="true"><i></i> Open now</div>
+          </article>
+
+          <article class="feature-card">
+            <span class="feature-icon feature-icon-gold">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6.2v5.1c0 4.6 3.1 7.9 7.5 9.7 4.4-1.8 7.5-5.1 7.5-9.7V6.2L12 3Z" /><path d="m8.7 12 2.1 2.1 4.5-4.6" /></svg>
+            </span>
+            <span class="feature-number">04</span>
+            <h3>Resources within reach</h3>
+            <p>Important phone numbers, passes, quick links, and campus resources are easier to find when they matter.</p>
+            <a class="text-link" href="https://apps.apple.com/us/app/pea-commons/id6751022904" target="_blank" rel="noopener noreferrer">
+              See it on the App Store
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10h11M11 5.5l4.5 4.5-4.5 4.5" /></svg>
+            </a>
+          </article>
+        </div>
       </div>
-      <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
-        <h3 style="margin:0 0 6px 0;">Schedules</h3>
-        <p style="margin:0; color:var(--muted);">Personal class schedule and preseason/arrival schedules.</p>
+    </section>
+
+    <section class="section section-schools" id="schools">
+      <div class="shell schools-grid">
+        <div class="schools-visual" aria-hidden="true">
+          <div class="campus-frame">
+            <div class="campus-sky"><span></span><span></span><span></span></div>
+            <div class="campus-building">
+              <div class="tower"><i></i><i></i><i></i></div>
+              <div class="building-wing wing-left"></div>
+              <div class="building-wing wing-right"></div>
+              <div class="building-steps"></div>
+            </div>
+            <div class="campus-caption">
+              <span>Born from campus life</span>
+              <strong>Designed around how students actually move through their day.</strong>
+            </div>
+          </div>
+          <div class="insight-card insight-card-one">
+            <span>One familiar destination</span>
+            <strong>Less searching.<br />More doing.</strong>
+          </div>
+        </div>
+
+        <div class="schools-copy">
+          <p class="eyebrow eyebrow-light"><span></span> For schools</p>
+          <h2>A campus app students will actually want to use.</h2>
+          <p class="schools-lede">
+            PEA Commons started with a student’s firsthand understanding of campus friction. That same student-first model can help another school create a more connected, more intuitive daily experience.
+          </p>
+
+          <div class="school-benefits">
+            <div>
+              <span class="check-mark">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10.5 3.5 3.5L16 5.5" /></svg>
+              </span>
+              <p><strong>Meet students where they are</strong><small>Put high-use campus information into one mobile experience.</small></p>
+            </div>
+            <div>
+              <span class="check-mark">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10.5 3.5 3.5L16 5.5" /></svg>
+              </span>
+              <p><strong>Make the daily details feel simple</strong><small>Turn fragmented information into a clear, useful student journey.</small></p>
+            </div>
+            <div>
+              <span class="check-mark">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10.5 3.5 3.5L16 5.5" /></svg>
+              </span>
+              <p><strong>Reflect your own campus</strong><small>Shape the experience around the resources, rhythms, and identity of your school.</small></p>
+            </div>
+          </div>
+
+          <a class="button button-light" href="mailto:aribenenson@gmail.com?subject=PEA%20Commons%20for%20our%20school">
+            Start a conversation
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10h11M11 5.5l4.5 4.5-4.5 4.5" /></svg>
+          </a>
+        </div>
       </div>
-      <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
-        <h3 style="margin:0 0 6px 0;">Quick Links & Safety</h3>
-        <p style="margin:0; color:var(--muted);">Useful phone numbers, passes, and campus resources.</p>
+    </section>
+
+    <section class="section section-approach" id="approach">
+      <div class="shell">
+        <div class="section-heading centered-heading">
+          <p class="eyebrow eyebrow-dark"><span></span> A practical approach</p>
+          <h2>From your campus needs<br />to a student-ready experience.</h2>
+          <p>A focused process for understanding what matters most and shaping PEA Commons around your school.</p>
+        </div>
+
+        <div class="steps" role="list">
+          <article class="step" role="listitem">
+            <div class="step-top"><span>01</span><i></i></div>
+            <h3>Understand</h3>
+            <p>Identify the information students reach for most and where today’s experience creates friction.</p>
+          </article>
+          <article class="step" role="listitem">
+            <div class="step-top"><span>02</span><i></i></div>
+            <h3>Shape</h3>
+            <p>Configure the experience around your campus resources, schedules, services, and visual identity.</p>
+          </article>
+          <article class="step" role="listitem">
+            <div class="step-top"><span>03</span></div>
+            <h3>Launch</h3>
+            <p>Introduce one clear destination that helps students move through campus with more confidence.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final-cta">
+      <div class="shell final-cta-inner">
+        <div class="cta-mark" aria-hidden="true">
+          <span></span><span></span>
+        </div>
+        <div>
+          <p class="eyebrow eyebrow-light"><span></span> Let’s build what students need</p>
+          <h2>Give your campus<br />a better front door.</h2>
+        </div>
+        <div class="cta-actions">
+          <p>See what a focused, student-first campus companion could look like at your school.</p>
+          <a class="button button-coral" href="mailto:aribenenson@gmail.com?subject=PEA%20Commons%20for%20our%20school">
+            Talk about your school
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10h11M11 5.5l4.5 4.5-4.5 4.5" /></svg>
+          </a>
+        </div>
       </div>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div>
+        <a class="brand brand-footer" href="#top" aria-label="PEA Commons home">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span></span>
+          <span class="brand-name">PEA Commons</span>
+        </a>
+        <p>A student-first companion for the everyday campus experience.</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <strong>Explore</strong>
+          <a href="#features">Product</a>
+          <a href="#schools">For schools</a>
+          <a href="#approach">How it works</a>
+        </div>
+        <div>
+          <strong>Connect</strong>
+          <a href="https://apps.apple.com/us/app/pea-commons/id6751022904" target="_blank" rel="noopener noreferrer">App Store</a>
+          <a href="mailto:aribenenson@gmail.com?subject=PEA%20Commons%20for%20our%20school">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <span>© <span data-year></span> PEA Commons</span>
+      <span>Built for the rhythms of campus life.</span>
+    </div>
+  </footer>
+
   <script>
-    // highlight current nav link
-    const path = location.pathname.replace(/\/+$/, "");
-    document.querySelectorAll("nav a").forEach(a => {
-      const href = a.getAttribute("href").replace(/\/+$/, "");
-      if ((path === "" && href === "/") || (href && path.endsWith(href))) {
-        a.classList.add("active");
-      }
+    const header = document.querySelector('[data-header]');
+    const toggle = document.querySelector('[data-menu-toggle]');
+    const nav = document.querySelector('[data-nav]');
+
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      header.classList.toggle('menu-open', !open);
     });
+
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        header.classList.remove('menu-open');
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 16);
+    }, { passive: true });
+
+    document.querySelector('[data-year]').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
