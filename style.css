@@ -116,6 +116,10 @@ a {
   color: var(--red);
 }
 
+.nav-inner nav a[aria-current="page"] {
+  color: var(--red);
+}
+
 .nav-download {
   flex: 0 0 auto;
   padding: 9px 16px;
@@ -442,6 +446,90 @@ footer {
   text-decoration: none;
 }
 
+.school-contact-main {
+  background: var(--cream);
+}
+
+.school-contact-hero {
+  min-height: calc(100vh - 210px);
+  padding: 92px 0 104px;
+  background: radial-gradient(circle at 88% 12%, rgba(158, 27, 20, 0.08), transparent 32%);
+}
+
+.school-contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.72fr);
+  align-items: center;
+  gap: 88px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 38px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--red);
+}
+
+.school-contact-copy h1 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(47px, 6vw, 70px);
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+}
+
+.school-contact-lede {
+  max-width: 720px;
+  margin: 27px 0 0;
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.72;
+}
+
+.school-contact-detail {
+  max-width: 650px;
+  margin: 18px 0 0;
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.meeting-card {
+  padding: 34px;
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--red);
+  border-radius: 14px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.meeting-card > img {
+  margin-bottom: 30px;
+  border-radius: 22%;
+}
+
+.meeting-card h2 {
+  margin: 0;
+  font-size: 31px;
+  line-height: 1.14;
+  letter-spacing: -0.035em;
+}
+
+.meeting-card > p:not(.eyebrow) {
+  margin: 18px 0 26px;
+  color: var(--muted);
+}
+
+.meeting-card p a {
+  color: var(--red);
+  font-weight: 700;
+}
+
 :focus-visible {
   outline: 3px solid #efb94f;
   outline-offset: 3px;
@@ -471,6 +559,10 @@ footer {
 
   .schools-grid {
     gap: 50px;
+  }
+
+  .school-contact-grid {
+    gap: 46px;
   }
 }
 
@@ -572,6 +664,31 @@ footer {
     align-items: flex-start;
     flex-direction: column;
     gap: 13px;
+  }
+
+  .school-contact-hero {
+    padding: 55px 0 70px;
+  }
+
+  .school-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .back-link {
+    margin-bottom: 31px;
+  }
+
+  .school-contact-copy h1 {
+    font-size: clamp(44px, 14vw, 60px);
+  }
+
+  .school-contact-lede {
+    font-size: 17px;
+  }
+
+  .meeting-card {
+    padding: 27px;
   }
 }
 
