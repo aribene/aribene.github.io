@@ -1,68 +1,179 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <title>PEA Commons</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#9e1b14" />
+  <meta
+    name="description"
+    content="PEA Commons brings schedules, dining menus, building hours, and campus resources into one simple student app."
+  />
+  <title>PEA Commons | Campus life, simplified</title>
+  <link rel="icon" href="app-icon.jpg" type="image/jpeg" />
+  <link rel="stylesheet" href="style.css?v=3" />
 </head>
 <body>
-  <!-- NAV -->
-  <nav>
-    <div style="font-weight:700; letter-spacing:.2px;">PEA Commons</div>
-    <div>
-      <a href="index.html">Home</a>
-      <a href="bulletin.html">Bulletin</a>
-      <a href="schedule.html">Schedule</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="PEA Commons home">
+        <img src="app-icon.jpg" alt="" width="42" height="42" />
+        <span>PEA Commons</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <a href="#features">Features</a>
+        <a href="#schools">For Schools</a>
+        <a href="bulletin.html">Bulletin</a>
+        <a href="schedule.html">Schedule</a>
+      </nav>
+
+      <a
+        class="nav-download"
+        href="https://apps.apple.com/us/app/pea-commons/id6751022904"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        App Store
+      </a>
     </div>
-  </nav>
-  <!-- MAIN -->
-  <main class="container">
-    <!-- Hero Card -->
-    <section style="background:var(--card); border-radius:16px; padding:24px; box-shadow:0 6px 18px rgba(0,0,0,.06); border:1px solid rgba(0,0,0,.06);">
-      <h1 style="margin:0 0 8px 0; font-size:34px;">Welcome to PEA Commons</h1>
-      <p style="margin:0; color:var(--muted); font-size:18px;">
-        The ultimate app for <strong>schedules</strong>, <strong>dining menus</strong>, <strong>building hours</strong>, and handy campus tools — built by an Exeter student for Exeter students.
-      </p>
-      <!-- App Store button -->
-      <div style="margin-top:12px;">
-        <a class="button"
-           href="https://apps.apple.com/us/app/pea-commons-dc101f/id6751022904"
-           target="_blank" rel="noopener"
-           aria-label="Download on the App Store">
-          Download on the App&nbsp;Store
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Built at Phillips Exeter Academy</p>
+          <h1>Campus life,<br /><span>simplified.</span></h1>
+          <p class="hero-lede">
+            PEA Commons puts schedules, dining menus, building hours, and useful campus resources in one quick, simple, and private app.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              class="button button-primary"
+              href="https://apps.apple.com/us/app/pea-commons/id6751022904"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Download on the App Store
+            </a>
+            <a
+              class="button button-secondary"
+              href="mailto:aribenenson@gmail.com?subject=PEA%20Commons%20for%20our%20school"
+            >
+              Bring it to your school
+            </a>
+          </div>
+
+          <p class="hero-note">Free for iPhone and iPad</p>
+        </div>
+
+        <div class="hero-visual" aria-label="PEA Commons app icon">
+          <div class="icon-card">
+            <img src="app-icon.jpg" alt="PEA Commons app icon: a white lion on a red background" />
+          </div>
+          <div class="visual-caption">
+            <strong>One place for the everyday campus experience.</strong>
+            <span>Made by a student, for students.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-section" id="features">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">What it does</p>
+            <h2>The essentials students use every day.</h2>
+          </div>
+          <p>No more jumping between different pages and portals just to answer a simple question.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">01</span>
+            <h3>Dining Hall Menus</h3>
+            <p>See today’s offerings at Elm and New Dining Hall before making the walk.</p>
+          </article>
+
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">02</span>
+            <h3>Live Building Status</h3>
+            <p>Quickly check what is open now and review hours across campus.</p>
+          </article>
+
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">03</span>
+            <h3>Schedules</h3>
+            <p>Keep personal classes, early arrival, and preseason schedules close at hand.</p>
+          </article>
+
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">04</span>
+            <h3>Links &amp; Resources</h3>
+            <p>Find useful phone numbers, passes, school news, and campus resources faster.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="schools-section" id="schools">
+      <div class="container schools-grid">
+        <div>
+          <p class="eyebrow eyebrow-light">For schools</p>
+          <h2>A simpler digital front door for your campus.</h2>
+        </div>
+
+        <div class="schools-copy">
+          <p>
+            PEA Commons was built from firsthand experience with the information students need throughout the day. The same focused approach can be adapted for another school’s schedules, services, resources, and identity.
+          </p>
+          <ul>
+            <li>Bring high-use campus information into one app</li>
+            <li>Shape the experience around your school</li>
+            <li>Make everyday information easier for students to find</li>
+          </ul>
+          <a
+            class="button button-light"
+            href="mailto:aribenenson@gmail.com?subject=PEA%20Commons%20for%20our%20school"
+          >
+            Start a conversation
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="download-section">
+      <div class="container download-inner">
+        <img src="app-icon.jpg" alt="" width="72" height="72" />
+        <div>
+          <h2>See PEA Commons in action.</h2>
+          <p>Download the app and explore the student experience today.</p>
+        </div>
+        <a
+          class="button button-primary"
+          href="https://apps.apple.com/us/app/pea-commons/id6751022904"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View on the App Store
         </a>
       </div>
     </section>
-    <!-- Features Heading -->
-    <h2 style="margin-top:36px; margin-bottom:12px; font-size:26px;">Some of the app's features</h2>
-    <!-- Feature Grid -->
-    <section style="display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(230px,1fr));">
-      <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
-        <h3 style="margin:0 0 6px 0;">Dining Hall Menus</h3>
-        <p style="margin:0; color:var(--muted);">See today's offerings at Elm and New Dining Hall.</p>
-      </div>
-      <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
-        <h3 style="margin:0 0 6px 0;">Live Building Status</h3>
-        <p style="margin:0; color:var(--muted);">Check what's open right now across campus.</p>
-      </div>
-      <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
-        <h3 style="margin:0 0 6px 0;">Schedules</h3>
-        <p style="margin:0; color:var(--muted);">Personal class schedule and preseason/arrival schedules.</p>
-      </div>
-      <div style="background:var(--card); border-radius:14px; padding:18px; border:1px solid rgba(0,0,0,.06);">
-        <h3 style="margin:0 0 6px 0;">Quick Links & Safety</h3>
-        <p style="margin:0; color:var(--muted);">Useful phone numbers, passes, and campus resources.</p>
-      </div>
-    </section>
   </main>
-  <script>
-    // highlight current nav link
-    const path = location.pathname.replace(/\/+$/, "");
-    document.querySelectorAll("nav a").forEach(a => {
-      const href = a.getAttribute("href").replace(/\/+$/, "");
-      if ((path === "" && href === "/") || (href && path.endsWith(href))) {
-        a.classList.add("active");
-      }
-    });
-  </script>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="app-icon.jpg" alt="" width="34" height="34" />
+        <strong>PEA Commons</strong>
+      </div>
+      <p>Built by an Exeter student for the everyday campus experience.</p>
+      <a href="mailto:aribenenson@gmail.com">Contact</a>
+    </div>
+  </footer>
 </body>
 </html>
